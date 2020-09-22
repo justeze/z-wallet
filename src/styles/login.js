@@ -1,17 +1,21 @@
 import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     mainContainer: {
-        flexDirection: 'column'
+        backgroundColor: '#E5E5E5',
+        // flex: 1
+
     },
     header: {
         height: 150,
         alignItems: 'center',
-        paddingTop: 50
+        paddingTop: 50,
+        // flex: 1
     },
     secContainer: {
         alignItems: 'center',
         borderTopStartRadius: 30,
-        borderTopEndRadius: 30
+        borderTopEndRadius: 30,
+        // flex: 1
     },
     contentTextLogin: {
         textAlign: 'center',
