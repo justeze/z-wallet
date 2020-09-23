@@ -30,7 +30,7 @@ const Login = () => {
                 </TouchableOpacity>
 
             </View>
-            <View style={{alignItems: 'center'}}>
+            <View style={{alignItems: 'center', backgroundColor: 'white'}}>
                 <TouchableOpacity style={{ ...style.loginBtn, backgroundColor: '#6379F4' }}>
                     <Text style={{ color: 'white', fontSize: 20 }}>
                         Login

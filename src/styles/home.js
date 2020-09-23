@@ -12,7 +12,7 @@ export default StyleSheet.create({
         borderRadius: 10
     },
     userName: {
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginLeft: 20
     },
     notifIconContainer: {
@@ -67,5 +67,26 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         alignSelf: 'center',
         width: 365
+    },
+    transactionContainer: {
+        width: 370,
+        marginTop: 20,
+        padding: 15,
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        borderRadius: 10
+    },
+    unameTransHistory: {
+        // backgroundColor: 'red',
+        justifyContent: 'space-between',
+        marginLeft: 20,
+        height: 55
+    },
+    transactionPrice: {
+        // backgroundColor: 'yellow',
+        width: 50,
+        marginLeft: 150
     }
 });
