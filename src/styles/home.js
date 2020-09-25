@@ -13,12 +13,14 @@ export default StyleSheet.create({
     },
     userName: {
         justifyContent: 'space-between',
-        marginLeft: 20
+        marginLeft: 20,
+        width: 150,
+        // backgroundColor: 'green'
     },
     notifIconContainer: {
-        // backgroundColor: 'black',
+        // backgroundColor: 'red',
         justifyContent: 'center',
-        width: 215
+        marginLeft: 110
     },
     notifIcon: {
         width: 40,
@@ -69,11 +71,9 @@ export default StyleSheet.create({
         width: 365
     },
     transactionContainer: {
-        width: 370,
         marginTop: 20,
         padding: 15,
         alignItems: 'center',
-        alignSelf: 'center',
         backgroundColor: 'white',
         flexDirection: 'row',
         borderRadius: 10
@@ -82,11 +82,12 @@ export default StyleSheet.create({
         // backgroundColor: 'red',
         justifyContent: 'space-between',
         marginLeft: 20,
-        height: 55
+        height: 55,
+        width: 150
     },
     transactionPrice: {
         // backgroundColor: 'yellow',
-        width: 50,
-        marginLeft: 150
+        width: 100,
+        marginLeft: 50
     }
 });
