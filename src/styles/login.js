@@ -28,33 +28,33 @@ export default StyleSheet.create({
         paddingLeft: 75,
         paddingRight: 75
     },
-    unameInput: {
-        color: 'black',
-        width: 350,
-        marginTop: 15,
-        marginBottom: 30,
-        padding: 10,
-        borderBottomWidth: 2,
-        borderBottomColor: '#6379F4',
+    unameInputContainer: {
+        borderBottomWidth: 1.5,
+        // borderBottomColor: '#6379F4',
+        marginVertical: 30
     },
-    pwdInput: {
+    pwdInputContainer: {
+        borderBottomWidth: 1.5,
+        // borderBottomColor: '#6379F4',
+    },
+    input: {
         color: 'black',
         width: 350,
-        marginBottom: 10,
+        // marginBottom: 10,
         padding: 10,
-        borderBottomWidth: 2,
-        borderBottomColor: '#6379F4',
+
     },
     forgotPwdBtn: {
         alignSelf: 'flex-end',
-        marginRight: 30
+        marginRight: 30,
+        marginTop: 15
     },
     loginBtn: {
-        width: 350,
+        width: 380,
         height: 60,
         borderRadius: 12,
         marginTop: 65,
-        marginBottom: 30,
+        marginBottom: 20,
         justifyContent: 'center',
         alignItems: 'center'
     },

@@ -8,7 +8,7 @@ const Splashscreen = ({ navigation }) => {
             index: 0,
             routes: [
                 {
-                    name: 'AmountFilled',
+                    name: 'Login',
                 },
             ],
         });

@@ -45,7 +45,7 @@ export default StyleSheet.create({
         width: 380,
         flexDirection: 'row',
         borderBottomWidth: 2,
-        paddingTop: 20
+        paddingTop: 30
 
     },
     notesInput: {
