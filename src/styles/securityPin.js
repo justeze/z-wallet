@@ -41,7 +41,7 @@ export default StyleSheet.create({
         marginBottom: 20,
     },
     loginBtn: {
-        width: 350,
+        width: 380,
         height: 60,
         borderRadius: 12,
         marginTop: 160,

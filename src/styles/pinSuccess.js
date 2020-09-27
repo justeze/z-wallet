@@ -27,17 +27,8 @@ export default StyleSheet.create({
         paddingLeft: 30,
         paddingRight: 30
     },
-    unameInput: {
-        color: 'black',
-        width: 350,
-        marginTop: 15,
-        marginBottom: 30,
-        padding: 10,
-        borderBottomWidth: 2,
-        borderBottomColor: '#6379F4',
-    },
     loginBtn: {
-        width: 350,
+        width: 380,
         height: 60,
         borderRadius: 12,
         marginTop: 50,

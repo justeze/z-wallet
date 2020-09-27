@@ -31,10 +31,12 @@ export default StyleSheet.create({
     unameInputContainer: {
         borderBottomWidth: 1.5,
         // borderBottomColor: '#6379F4',
+        flexDirection: 'row',
         marginVertical: 30
     },
     pwdInputContainer: {
         borderBottomWidth: 1.5,
+        flexDirection: 'row',
         // borderBottomColor: '#6379F4',
     },
     input: {
@@ -42,7 +44,6 @@ export default StyleSheet.create({
         width: 350,
         // marginBottom: 10,
         padding: 10,
-
     },
     forgotPwdBtn: {
         alignSelf: 'flex-end',
@@ -56,7 +57,25 @@ export default StyleSheet.create({
         marginTop: 65,
         marginBottom: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#DADADA'
+    },
+    loginBtnInactive: {
+        width: 380,
+        height: 60,
+        borderRadius: 12,
+        marginTop: 65,
+        marginBottom: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#6379F4'
+    },
+    textError:{
+        color:error,
+        fontSize:16,
+        fontFamily:'NunitoSans-Semi-bold',
+        alignSelf:'center',
+        marginTop:15
     },
     signUpBtn: {
         marginBottom: 40,

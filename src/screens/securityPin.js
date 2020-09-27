@@ -1,12 +1,29 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserCreator } from '../redux/actions/auth';
 import SmootPinCode from 'react-native-smooth-pincode-input';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+// import { useRoute } from '@react-navigation/native';
 
 
 import style from '../styles/securityPin'
 
-const SecurityPin = () => {
+const SecurityPin = ({ navigation }) => {
     const [pin, setPin] = useState('');
+    const dispatch = useDispatch();
+    const auth = useSelector((state) => state.auth);
+    // const addPin = useSelector((state) => state.auth.data);
+    // const route = useRoute();
+    // const { email, password } = route.params;
+
+
+    if (auth.status === 200) {
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'PinSuccess' }],
+        });
+        // navigation.navigate('PinSuccess');
+    } 
     return (
         <View style={{ ...style.mainContiner }}>
             <View style={{ ...style.header }}>
@@ -25,40 +42,23 @@ const SecurityPin = () => {
                         onTextChange={(pin) => setPin(pin)}
                     />
                 </View>
-                {/* <TouchableOpacity
-                    style={pin.length !== 6 ? style.loginBtn : style.loginBtnActive}
-                    onPress={() => {
-                        if (pin.length === 6) {
-                            navigation.navigate('pinsuccess')
-                        }
-                    }}>
-                    <Text
-                        style={pin.length !== 6 ? style.loginText : style.loginTextActive}>
-                        Confirm
-                    </Text>
-                </TouchableOpacity> */}
-
             </View>
             <View style={{ alignItems: 'center', backgroundColor: 'white' }}>
                 <TouchableOpacity style={{ ...style.loginBtn, backgroundColor: '#6379F4' }}
-                    // onPress={() => {
-                    //     if (pin.length === 6) {
-                    //         navigation.navigate('pinsuccess')
-                    //     }
-                    // }}
-                    >
+                    onPress={() => {
+                        
+                        console.log('ini email',auth)
+                        if (pin.length === 6) {
+                            dispatch(
+                                updateUserCreator(null, null, Number(pin), null, auth.data.email),
+                            );
+                        }
+                    }}
+                >
                     <Text style={{ color: 'white', fontSize: 20 }}>
                         Confirm
                     </Text>
                 </TouchableOpacity>
-                {/* <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ color: '#3A3D42' }}>Dont have an account? Let's </Text>
-                    <TouchableOpacity style={{ ...style.signUpBtn }}>
-                        <Text style={{ color: '#6379F4' }}>
-                            Sign Up
-                        </Text>
-                    </TouchableOpacity>
-                </View> */}
             </View>
         </View>
     )
