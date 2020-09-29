@@ -1,5 +1,13 @@
 import Axios from 'axios';
 
+export const getUsers = () => {
+  return Axios.get('http://192.168.0.4:9000/?page=1&limit=6');
+};
+
+export const getUserSearch = (username) => {
+  return Axios.get(`http://192.168.0.4:9000/?username=${username}&page=1&limit=6`);
+};
+
 export const authLogin = (data) => {
   return Axios.post(`http://192.168.0.4:9000/auth/login`, data);
 }

@@ -1,27 +1,34 @@
 import React from 'react'
-
+import { useSelector, useDispatch } from 'react-redux'
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/AntDesign';
 import style from '../styles/home'
 import profileImg from '../assets/img/lawless.jpg'
+import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
+
 // import notifIcon from '../assets/icon/shopping-cart.png'
 
 
 const Home = ({ navigation }) => {
+    const auth = useSelector((state) => state.auth);
+    // console.log(auth.data)
     return (
         <View style={{ flexDirection: 'column' }}>
             <View style={{ ...style.userContainer, flexDirection: 'row' }}>
                 <TouchableOpacity onPress={() => {
-                            navigation.navigate('UserProfile')
-                        }}>                
-                <View>
-                    <Image source={profileImg} style={{ ...style.userImg, }} />
-                </View>
+                    navigation.navigate('UserProfile')
+                }}>
+                    <View>
+                        {auth.data === null ? <Image source={imgPlaceHolder} style={style.userImg} />
+                            : auth.data.length ? <Image source={{ uri: auth.data.avatar }} style={{ ...style.userImg, }} />
+                                : <Image source={imgPlaceHolder} style={style.userImg} />}
+                        {/* <Image source={imgPlaceHolder} style={style.userImg} /> */}
+                    </View>
                 </TouchableOpacity>
 
                 <View style={{ ...style.userName, flexDirection: 'column' }}>
                     <Text style={{ fontSize: 20, color: 'silver' }}>Hello,</Text>
-                    <Text style={{ fontSize: 20 }}>markus</Text>
+                    <Text style={{ fontSize: 20 }}>{auth.data.username}</Text>
                 </View>
                 <View style={{ ...style.notifIconContainer, }}>
                     {/* <Image source={notifIcon} style={{ ...style.notifIcon, }} /> */}
@@ -35,7 +42,9 @@ const Home = ({ navigation }) => {
                 <Text style={{ color: 'white' }}>082112524515</Text>
             </View>
             <View style={{ ...style.actionBtn, flexDirection: 'row' }}>
-                <TouchableOpacity style={{ ...style.trfBtn, flexDirection: 'row' }}>
+                <TouchableOpacity style={{ ...style.trfBtn, flexDirection: 'row' }} onPress={() => {
+                    navigation.navigate('SearchReceiver')
+                }}>
                     {/* <Image source={notifIcon} style={{ width: 30, height: 30 }} /> */}
                     <Icon name='arrowup' size={25} />
                     <Text style={{ fontSize: 20 }}>Transfer</Text>

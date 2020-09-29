@@ -67,7 +67,7 @@ const authReducer = (state = initialState, { type, payload }) => {
         isPending: false,
       };
     case actions.AUTH_EDITUSER + actions.FULFILLED:
-      
+
       return {
         ...state,
         isFulfilled: true,

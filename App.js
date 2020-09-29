@@ -11,7 +11,7 @@ import Register from './src/screens/register'
 import Home from './src/screens/home'
 import SecurityPin from './src/screens/securityPin'
 import PinSuccess from './src/screens/pinSuccess'
-// import Search from './src/screens/searchReceiver'
+import Search from './src/screens/searchReceiver'
 // import History from './src/screens/history'
 // import AmountFilled from './src/screens/amountFilled'
 import UserProfile from './src/screens/userProfile'
@@ -38,7 +38,7 @@ const App = () => {
                             <Stack.Screen name='SecurityPin' component={SecurityPin} />
                             <Stack.Screen name='PinSuccess' component={PinSuccess} />
                             <Stack.Screen name='Home' component={Home} />
-                            {/* <Stack.Screen name='SearchReceiver' component={Search} /> */}
+                            <Stack.Screen name='SearchReceiver' component={Search} />
                             {/* <Stack.Screen name='History' component={History} /> */}
                             {/* <Stack.Screen name='AmountFilled' component={AmountFilled} /> */}
                             <Stack.Screen name='UserProfile' component={UserProfile} />

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import {  useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
     View,
@@ -11,6 +11,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { LoggedOut } from '../redux/actions/auth'
+import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
 
 import style from '../styles/userProfile';
 import Icon from 'react-native-vector-icons/Feather';
@@ -21,6 +22,7 @@ const UserProfile = ({ navigation }) => {
     const toggleSwitch = () => setIsEnabled((f) => !f);
     const dispatch = useDispatch();
     const [logout, setLogout] = useState(false);
+    const auth = useSelector((state) => state.auth);
 
 
     // console.log(auth)
@@ -40,16 +42,21 @@ const UserProfile = ({ navigation }) => {
     return (
         <View style={style.container}>
             <View style={style.tab}>
-                <Icon name="arrow-left" size={30} color="#4D4B57" />
+                <Icon name="arrow-left" size={30} color="#4D4B57" onPress={() => {
+                        navigation.goBack()
+                    }} />
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={style.profile}>
-                    <Image source={imgUser} style={style.imgUser} />
+                {auth.data === null ? <Image source={imgPlaceHolder} style={style.imgUser} />
+                            : auth.data.length ? <Image source={{uri: auth.data.avatar}} style={style.imgUser} />
+                                : <Image source={imgPlaceHolder} style={style.imgUser} />}
+                    {/* <Image source={imgUser} style={style.imgUser} /> */}
                     <View style={style.edit}>
                         <Icon name="edit-2" color="#7A7886" />
                         <Text style={style.editTxt}>Edit</Text>
                     </View>
-                    <Text style={style.name}>Robert Charter</Text>
+                    <Text style={style.name}>{auth.data.username}</Text>
                     <Text style={style.phone}>+62305-4545-4545</Text>
                 </View>
                 <View style={{ padding: 20, }}>

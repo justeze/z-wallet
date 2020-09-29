@@ -9,7 +9,7 @@ export default StyleSheet.create({
     searchInputContainer: {
         backgroundColor: '#E5E8ED',
         width: 380,
-        margin: 30,
+        margin: 20,
         flexDirection: 'row',
         alignItems: 'center',
         alignSelf: 'center',
@@ -24,7 +24,6 @@ export default StyleSheet.create({
         padding: 15,
         width: 95,
         marginLeft: 15,
-        marginTop: 10,
         alignItems: 'center',
         borderRadius: 10
     },
@@ -45,6 +44,7 @@ export default StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         padding: 12,
+        marginBottom: 10
     },
     userResultContainer: {
         flexDirection: 'column',
