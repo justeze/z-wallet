@@ -1,5 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {  useDispatch } from 'react-redux'
+
 import {
     View,
     Text,
@@ -8,6 +10,8 @@ import {
     Switch,
     TouchableOpacity,
 } from 'react-native';
+import { LoggedOut } from '../redux/actions/auth'
+
 import style from '../styles/userProfile';
 import Icon from 'react-native-vector-icons/Feather';
 import imgUser from '../assets/img/lawless.jpg';
@@ -15,6 +19,23 @@ import imgUser from '../assets/img/lawless.jpg';
 const UserProfile = ({ navigation }) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled((f) => !f);
+    const dispatch = useDispatch();
+    const [logout, setLogout] = useState(false);
+
+
+    // console.log(auth)
+    useEffect(() => {
+        if (logout) {
+            dispatch(LoggedOut());
+            setLogout(false);
+            // console.log(logOut)
+            navigation.navigate('Login');
+        }
+    }, [dispatch, logout, navigation]);
+
+    const handleLogout = () => {
+        setLogout(true);
+    };
 
     return (
         <View style={style.container}>
@@ -62,7 +83,11 @@ const UserProfile = ({ navigation }) => {
                         />
                     </View>
                     <View style={{ ...style.listOperation, justifyContent: 'center' }}>
-                        <Text style={{ ...style.nameOperation, color: 'red' }}>Logout</Text>
+                        <TouchableOpacity onPress={() => {
+                            handleLogout()
+                        }}>
+                            <Text style={{ ...style.nameOperation, color: 'red' }}>Logout</Text>
+                        </TouchableOpacity>
                         {/* <Icon name="arrow-right" size={20} color="#4D4B57" /> */}
                     </View>
                 </View>

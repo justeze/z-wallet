@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserCreator } from '../redux/actions/auth';
 import SmootPinCode from 'react-native-smooth-pincode-input';
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
-// import { useRoute } from '@react-navigation/native';
 
 
 import style from '../styles/securityPin'
@@ -11,18 +10,15 @@ import style from '../styles/securityPin'
 const SecurityPin = ({ navigation }) => {
     const [pin, setPin] = useState('');
     const dispatch = useDispatch();
-    const auth = useSelector((state) => state.auth);
-    // const addPin = useSelector((state) => state.auth.data);
-    // const route = useRoute();
-    // const { email, password } = route.params;
+    const auth = useSelector((state) => state.auth.data);
+    console.log(auth)
 
-
-    if (auth.status === 200) {
+    if (auth.msg === 'edit success') {
         navigation.reset({
             index: 0,
-            routes: [{ name: 'PinSuccess' }],
+            routes: [{ name: 'PinSuccess'}],
         });
-        // navigation.navigate('PinSuccess');
+        navigation.navigate('PinSuccess');
     } 
     return (
         <View style={{ ...style.mainContiner }}>
@@ -47,10 +43,10 @@ const SecurityPin = ({ navigation }) => {
                 <TouchableOpacity style={{ ...style.loginBtn, backgroundColor: '#6379F4' }}
                     onPress={() => {
                         
-                        console.log('ini email',auth)
+                        // console.log('ini email',auth)
                         if (pin.length === 6) {
                             dispatch(
-                                updateUserCreator(null, null, Number(pin), null, auth.data.email),
+                                updateUserCreator(null, null, Number(pin), null, auth.email),
                             );
                         }
                     }}

@@ -14,7 +14,7 @@ import PinSuccess from './src/screens/pinSuccess'
 // import Search from './src/screens/searchReceiver'
 // import History from './src/screens/history'
 // import AmountFilled from './src/screens/amountFilled'
-// import UserProfile from './src/screens/userProfile'
+import UserProfile from './src/screens/userProfile'
 
 
 
@@ -30,7 +30,6 @@ const App = () => {
         <>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
-
                     <NavigationContainer>
                         <Stack.Navigator headerMode="none" initialRouteName="SplashScreen">
                             <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -42,11 +41,10 @@ const App = () => {
                             {/* <Stack.Screen name='SearchReceiver' component={Search} /> */}
                             {/* <Stack.Screen name='History' component={History} /> */}
                             {/* <Stack.Screen name='AmountFilled' component={AmountFilled} /> */}
-                            {/* <Stack.Screen name='UserProfile' component={UserProfile} /> */}
+                            <Stack.Screen name='UserProfile' component={UserProfile} />
                         </Stack.Navigator>
                         {/* <Register/> */}
                     </NavigationContainer>
-
                 </PersistGate>
             </Provider>
 

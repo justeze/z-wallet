@@ -1,17 +1,17 @@
 import * as actions from './actionTypes';
 import { authLogin, authRegister, updateUser } from "../../utils/reqData";
 
-export const authRegisterCreator = (email, name, password, pin) => {
+export const authRegisterCreator = (data) => {
   return {
-    type: actions.AUTH_LOGIN,
-    payload: authRegister(email, name, password, pin),
+    type: actions.AUTH_REGISTER,
+    payload: authRegister(data),
   }
 }
 
-export const authLoginCreator = (email, password) => {
+export const authLoginCreator = (data) => {
   return {
     type: actions.AUTH_LOGIN,
-    payload: authLogin(email, password),
+    payload: authLogin(data),
   }
 }
 export const updateUserCreator = (username, password, pin, image, email) => {

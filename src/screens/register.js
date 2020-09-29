@@ -1,97 +1,143 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Pressable } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import { Input } from 'react-native-elements';
+import { useForm, Controller } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { authRegisterCreator } from '../redux/actions/auth';
 
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
-
-import { authRegisterCreator } from '../redux/actions/auth'
-
-import Icon from 'react-native-vector-icons/AntDesign'
-import Iconn from 'react-native-vector-icons/Feather'
-
-
-import style from '../styles/register'
+import styles from '../styles/login';
+import * as color from '../styles/colorStyles';
 
 const Register = ({ navigation }) => {
+    const [showPassword, setShowPassword] = useState(true);
     const dispatch = useDispatch();
-    const register = useSelector((state) => state.auth.isLogin);
 
-    const [form, setform] = useState({ name: null, email: null, password: null });
+    const msg = useSelector((state) => state.auth.data);
+    
+    // console.log(msg.msg)
 
-    if (register) {
-        // console.log(form.email)
-        navigation.navigate('SecurityPin', { email: form.email, password: form.password });
-    }
+    useEffect(() => {
+        if (msg.msg === 'register success') {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'SecurityPin'}],
+            });
+            return navigation.navigate('SecurityPin');
+        }
+    }, [msg, navigation]);
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const { control, handleSubmit } = useForm();
+
+    const onSubmit = (data) => {
+        // console.log(data)
+        dispatch(authRegisterCreator(data));
+    };
 
     return (
-        <View style={{ ...style.mainContiner, backgroundColor: '#E5E5E5' }}>
-            <View style={{ ...style.header }}>
-                <Text style={{ fontSize: 30, color: '#6379F4' }}>Zwallet</Text>
+        <View style={styles.container}>
+            <View style={styles.containerTop}>
+                <Text style={styles.appText}>Zwallet</Text>
             </View>
-            <View style={{ ...style.secContainer, backgroundColor: 'white' }}>
-                <Text style={{ ...style.contentTextLogin, fontSize: 25 }}>Sign Up</Text>
-                <Text style={{ ...style.contentTextLoginDesc, color: '#3A3D42' }}>Create your account to access Zwallet</Text>
-                <View style={{ ...style.unameInputContainer, }}>
-                    <Icon
-                        name='user'
-                        size={20}
-                        style={{ alignSelf: 'center' }}
-                        color={'#6379F4'}
-                    />
-                    <TextInput
-                        placeholder="Enter your username"
-                        style={{ ...style.input }}
-                        onChangeText={(text) => setform({ ...form, name: text })}
-                    />
-                </View>
-                <View style={{ ...style.emailInputContainer, }}>
-                    <Icon
-                        name='mail'
-                        size={20}
-                        style={{ alignSelf: 'center' }}
-                        color={'#6379F4'}
-                    />
-                    <TextInput
-                        placeholder="Enter your e-mail"
-                        style={{ ...style.input }}
-                        onChangeText={(text) => setform({ ...form, email: text })}
-                    />
-                </View>
-                <View style={{ ...style.pwdInputContainer, }}>
-                    <Iconn
-                        name='lock'
-                        size={20}
-                        style={{ alignSelf: 'center' }}
-                        color={'#6379F4'}
-                    />
-                    <TextInput
-                        placeholder="Enter your password"
-                        secureTextEntry={true}
-                        style={{ ...style.input }}
-                        onChangeText={(text) => setform({ ...form, password: text })}
-                    />
-                </View>
-                <TouchableOpacity style={{ ...style.loginBtn, backgroundColor: '#6379F4' }}
-                    onPress={() => {
-                        dispatch(authRegisterCreator(form.email, form.name, form.password))
-                    }}>
-                    <Text style={{ color: 'white', fontSize: 20 }}>
-                        Sign Up
-                    </Text>
-                </TouchableOpacity>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ color: '#3A3D42' }}>Already have an account? Let's </Text>
-                    <TouchableOpacity style={{ ...style.signUpBtn }}
-                        onPress={() => {
-                            navigation.navigate('Login')
-                        }}>
-                        <Text style={{ color: '#6379F4' }}>
-                            Login
-                    </Text>
-                    </TouchableOpacity>
+            <View style={styles.containerBottom}>
+                <Text style={styles.loginText}>Sign Up</Text>
+                <Text style={styles.loginInfoText}>Create your account to access Zwallet.</Text>
+                <Controller
+                    control={control}
+                    render={({ onChange, onBlur, value }) => (
+                        <Input
+                            placeholder="Enter your username"
+                            leftIcon={
+                                <Icon
+                                    name="user"
+                                    size={20}
+                                    color={color.input}
+                                />
+                            }
+                            inputContainerStyle={styles.input}
+                            inputStyle={styles.input}
+                            placeholderTextColor={color.input}
+                            onBlur={onBlur}
+                            onChangeText={text => onChange(text)}
+                            value={value}
+                        />
+                    )}
+                    name="username"
+                    rules={{ required: true }}
+                    defaultValue=""
+                />
+                <Controller
+                    control={control}
+                    render={({ onChange, onBlur, value }) => (
+                        <Input
+                            placeholder="Enter your e-mail"
+                            leftIcon={
+                                <Icon
+                                    name="mail"
+                                    size={20}
+                                    color={color.input}
+                                />
+                            }
+                            keyboardType="email-address"
+                            inputContainerStyle={styles.input}
+                            inputStyle={styles.input}
+                            placeholderTextColor={color.input}
+                            onBlur={onBlur}
+                            onChangeText={text => onChange(text)}
+                            value={value}
+                        />
+                    )}
+                    name="email"
+                    rules={{ required: true }}
+                    defaultValue=""
+                />
+                <Controller
+                    control={control}
+                    render={({ onChange, onBlur, value }) => (
+                        <Input
+                            placeholder="Enter your password"
+                            leftIcon={
+                                <Icon
+                                    name="lock"
+                                    size={20}
+                                    color={color.input}
+                                />
+                            }
+                            rightIcon={
+                                <Icon
+                                    onPress={handleShowPassword}
+                                    name={showPassword ? 'eye-off' : 'eye'}
+                                    size={18}
+                                    color={color.input}
+                                />
+                            }
+                            secureTextEntry={showPassword}
+                            inputContainerStyle={styles.input}
+                            inputStyle={styles.input}
+                            placeholderTextColor={color.input}
+                            onBlur={onBlur}
+                            onChangeText={text => onChange(text)}
+                            value={value}
+                        />
+                    )}
+                    name="password"
+                    rules={{ required: true }}
+                    defaultValue=""
+                />
+                <Pressable style={styles.buttonLogin} onPress={handleSubmit(onSubmit)}>
+                    <Text style={styles.buttonLoginText}>Sign Up</Text>
+                </Pressable>
+                <View style={styles.textSignUpContainer}>
+                    <Text style={styles.textSignUp}>Already have an account? </Text>
+                    <Pressable onPress={() => navigation.navigate('Home')}><Text style={styles.textSignUpLink}>Let’s Login</Text></Pressable>
                 </View>
             </View>
         </View>
-    )
-}
+    );
+};
 
-export default Register
+export default Register;

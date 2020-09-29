@@ -4,9 +4,9 @@ export default StyleSheet.create({
         flexDirection: 'column'
     },
     header: {
-        height: 150,
+        height: 120,
         alignItems: 'center',
-        paddingTop: 50
+        paddingTop: 45
     },
     secContainer: {
         alignItems: 'center',
@@ -44,16 +44,16 @@ export default StyleSheet.create({
     },
     input: {
         color: 'black',
-        width: 350,
+        width: 320,
         // marginBottom: 10,
         padding: 10,
 
     },
     loginBtn: {
-        width: 380,
+        width: 350,
         height: 60,
         borderRadius: 12,
-        marginTop: 15,
+        marginTop: 30,
         marginBottom: 30,
         justifyContent: 'center',
         alignItems: 'center'

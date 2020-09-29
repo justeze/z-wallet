@@ -1,98 +1,130 @@
-import React, { useState } from 'react'
-import { Text, View, TextInput, TouchableOpacity } from 'react-native'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { authLoginCreator } from '../redux/actions/auth'
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Pressable, ToastAndroid } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import { Input } from 'react-native-elements';
+import { useForm, Controller } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { authLoginCreator } from '../redux/actions/auth';
 
-// import Icon from 'react-native-vector-icons/AntDesign'
-// import Iconn from 'react-native-vector-icons/Feather'
+import styles from '../styles/login';
+import * as color from '../styles/colorStyles';
 
-import style from '../styles/login'
+const Login = ({ navigation }) => {
+    const [showPassword, setShowPassword] = useState(true);
+    const dispatch = useDispatch();
 
-const Login = () => {
-    // const dispatch = useDispatch();
-    // const login = useSelector((state) => state.auth.isLogin);
+    const { isLogin } = useSelector(
+        (state) => state.auth
+    );
 
-    // const [form, setForm] = useState({ email: null, password: null });
+    useEffect(() => {
+        if (isLogin) {
+            return navigation.navigate('Home');
+        }
+    }, [isLogin, navigation]);
 
-    // if (login) {
-    //     navigation.reset({
-    //         index: 0,
-    //         routes: [{name: 'Home'}],
-    //       });
-    // }
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const { control, handleSubmit, errors } = useForm();
+
+    const onSubmit = (data) => {
+        dispatch(authLoginCreator(data))
+    };
 
     return (
-        <View style={{ ...style.mainContiner }}>
-            {/* <View style={{ ...style.header }}>
-                <Text style={{ fontSize: 30, color: '#6379F4' }}>Zwallet</Text>
+        <View style={{ ...styles.container, backgroundColor: '#E5E5E5' }}>
+            <View style={{ ...styles.containerTop, }}>
+                <Text style={styles.appText}>Zwallet</Text>
             </View>
-            <View style={{ ...style.secContainer, backgroundColor: 'white' }}>
-                <Text style={{ ...style.contentTextLogin, fontSize: 25 }}>Login</Text>
-                <Text style={{ ...style.contentTextLoginDesc, color: '#3A3D42' }}>Login to your existing account to access </Text>
-                <Text style={{ ...style.contentTextLoginDesc, color: '#3A3D42' }}>all the features in Zwallet</Text>
-                <View style={{ ...style.unameInputContainer,  }}>
-                    <Icon
-                        name='mail'
-                        size={20}
-                        style={{ alignSelf: 'center' }}
-                        color={email === '' ? '#878787' : '#6379F4'}
+            
+            <View style={styles.containerBottom}>
+                <Text style={styles.loginText}>Login</Text>
+                <Text style={styles.loginInfoText}>Login to your existing account to access all the features in Zwallet.</Text>
+                <View>
+                    <Controller
+                        control={control}
+                        render={({ onChange, onBlur, value }) => (
+                            <Input
+                                placeholder="Enter your e-mail"
+                                leftIcon={
+                                    <Icon
+                                        name="mail"
+                                        size={20}
+                                        color={color.input}
+                                    />
+                                }
+                                inputContainerStyle={styles.input}
+                                inputStyle={styles.input}
+                                placeholderTextColor={color.input}
+                                onBlur={onBlur}
+                                onChangeText={text => onChange(text)}
+                                value={value}
+                                keyboardType="email-address"
+                            />
+                        )}
+                        name="email"
+                        rules={{ required: true }}
+                        defaultValue=""
                     />
-                    <TextInput
-                        placeholder="Email"
-                        style={{ ...style.input }}
-                        onChangeText={(text) => {
-                            setForm({ ...form, email: text })
-                        }}
-                    />
+                    {/* {errors.email && <Text>Email is required.</Text>} */}
                 </View>
-                <View style={{ ...style.pwdInputContainer,  }}>
-                    <Iconn
-                        name='lock'
-                        size={20}
-                        style={{ alignSelf: 'center' }}
-                        color={pass === '' ? '#878787' : '#6379F4'}
+                <View>
+                    <Controller
+                        control={control}
+                        render={({ onChange, onBlur, value }) => (
+                            <Input
+                                placeholder="Enter your password"
+                                leftIcon={
+                                    <Icon
+                                        name="lock"
+                                        size={20}
+                                        color={color.input}
+                                    />
+                                }
+                                rightIcon={
+                                    <Icon
+                                        onPress={handleShowPassword}
+                                        name={showPassword ? "eye-off" : "eye"}
+                                        size={18}
+                                        color={color.input}
+                                    />
+                                }
+                                secureTextEntry={showPassword}
+                                inputContainerStyle={styles.input}
+                                inputStyle={styles.input}
+                                placeholderTextColor={color.input}
+                                onBlur={onBlur}
+                                onChangeText={text => onChange(text)}
+                                value={value}
+                            />
+                        )}
+                        name="password"
+                        rules={{ required: true }}
+                        defaultValue=""
                     />
-                    <TextInput
-                        placeholder="Enter your password"
-                        secureTextEntry={true}
-                        style={{ ...style.input }}
-                        onChangeText={(text) => {
-                            setForm({ ...form, password: text })
-                        }}
-                    />
+                    {/* {errors.password && <Text>Password is required.</Text>} */}
+                    <Pressable>
+                        <Text style={styles.textForgotPass}>Forgot password?</Text>
+                    </Pressable>
                 </View>
-                <TouchableOpacity style={{ ...style.forgotPwdBtn }}>
-                    <Text>
-                        Forgot password?
-                    </Text>
-                </TouchableOpacity>
-
+                {errors.password || errors.email ? (
+                    <View style={styles.buttonLoginDisabled}>
+                        <Text style={styles.buttonLoginTextDisabled}>Login</Text>
+                    </View>
+                ) : (
+                        <Pressable style={styles.buttonLogin} onPress={handleSubmit(onSubmit)}>
+                            <Text style={styles.buttonLoginText}>Login</Text>
+                        </Pressable>
+                    )}
+                <View style={styles.textSignUpContainer}>
+                    <Text style={styles.textSignUp}>Don’t have an account? Let’s </Text>
+                    <Pressable onPress={() => navigation.navigate('Register')}><Text style={styles.textSignUpLink}>Sign Up</Text></Pressable>
+                </View>
             </View>
-            <View style={{ alignItems: 'center', backgroundColor: 'white' }}>
-                <TouchableOpacity style={{ ...style.loginBtnInactive, }}
-                    onPress={() => {
-                        // console.log('kambing')
-                        dispatch(authLoginCreator(form.email, form.password))
-                    }}>
-                    <Text style={{ color: 'white', fontSize: 20 }}>
-                        Login
-                    </Text>
-                </TouchableOpacity>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ color: '#3A3D42' }}>Dont have an account? Let's </Text>
-                    <TouchableOpacity style={{ ...style.signUpBtn }}
-                        onPress={() => {
-                            navigation.navigate('Register');
-                        }}
-                    >
-                        <Text style={{ color: '#6379F4' }}>
-                            Sign Up
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View> */}
         </View>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

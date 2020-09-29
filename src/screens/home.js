@@ -7,13 +7,18 @@ import profileImg from '../assets/img/lawless.jpg'
 // import notifIcon from '../assets/icon/shopping-cart.png'
 
 
-const Home = () => {
+const Home = ({ navigation }) => {
     return (
         <View style={{ flexDirection: 'column' }}>
             <View style={{ ...style.userContainer, flexDirection: 'row' }}>
+                <TouchableOpacity onPress={() => {
+                            navigation.navigate('UserProfile')
+                        }}>                
                 <View>
                     <Image source={profileImg} style={{ ...style.userImg, }} />
                 </View>
+                </TouchableOpacity>
+
                 <View style={{ ...style.userName, flexDirection: 'column' }}>
                     <Text style={{ fontSize: 20, color: 'silver' }}>Hello,</Text>
                     <Text style={{ fontSize: 20 }}>markus</Text>

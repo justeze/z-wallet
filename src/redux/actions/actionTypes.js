@@ -3,6 +3,7 @@ import { ActionType } from 'redux-promise-middleware';
 
 
 export const AUTH_LOGIN = 'authLogin'
+export const AUTH_REGISTER = 'authRegister'
 export const AUTH_EDITUSER = 'authEditUser'
 export const AUTH_LOGOUT = 'authLogout';
 

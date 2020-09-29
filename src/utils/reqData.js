@@ -1,19 +1,11 @@
 import Axios from 'axios';
 
-export const authLogin = (email, password) => {
-  return Axios.post(`http://192.168.0.4:9000/auth/login`, {
-    email: email,
-    password: password,
-  });
+export const authLogin = (data) => {
+  return Axios.post(`http://192.168.0.4:9000/auth/login`, data);
 }
 
-export const authRegister = (email, name, password, pin) => {
-  return Axios.post(`http://192.168.0.4:9000/auth/register`, {
-    email: email,
-    username: name,
-    password: password,
-    pin: pin
-  });
+export const authRegister = (data) => {
+  return Axios.post(`http://192.168.0.4:9000/auth/register`, data);
 }
 
 export const updateUser = (username, password, pin, image, email) => {
@@ -42,7 +34,7 @@ export const updateUser = (username, password, pin, image, email) => {
       accept: 'application/json',
     },
   };
-  console.log(data)
+  // console.log(data)
   const url = 'http://192.168.0.4:9000/auth/update';
   return Axios.patch(url, data, config);
 };
