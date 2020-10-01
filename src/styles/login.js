@@ -1,7 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as color from './colorStyles';
 
-const { height } = Dimensions.get('screen');
 const styles = StyleSheet.create({
    container: {
       flex: 1,
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
       fontSize: 26,
    },
    containerBottom: {
-      flex: 5,
+      flex: 4,
       backgroundColor: color.white,
       elevation: 3,
       borderTopRightRadius: 30,

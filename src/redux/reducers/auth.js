@@ -79,9 +79,7 @@ const authReducer = (state = initialState, { type, payload }) => {
       };
     case actions.AUTH_LOGOUT:
       return {
-        data: {
-          msg: ''
-        },
+        data: {},
         isLogin: false,
         isPending: false,
         isFulfilled: false,

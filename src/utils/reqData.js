@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 export const getUsers = () => {
-  return Axios.get('http://192.168.0.4:9000/?page=1&limit=6');
+  return Axios.get('http://192.168.0.4:9000/');
 };
 
 export const getUserSearch = (username) => {
@@ -46,3 +46,7 @@ export const updateUser = (username, password, pin, image, email) => {
   const url = 'http://192.168.0.4:9000/auth/update';
   return Axios.patch(url, data, config);
 };
+
+export const transactionTransfer = (data) => {
+  return Axios.post(`http://192.168.0.4:9000/transaction/send`, data);
+}

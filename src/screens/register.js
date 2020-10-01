@@ -39,7 +39,7 @@ const Register = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={{...styles.container, backgroundColor: '#E5E5E5'}}>
             <View style={styles.containerTop}>
                 <Text style={styles.appText}>Zwallet</Text>
             </View>
@@ -133,7 +133,7 @@ const Register = ({ navigation }) => {
                 </Pressable>
                 <View style={styles.textSignUpContainer}>
                     <Text style={styles.textSignUp}>Already have an account? </Text>
-                    <Pressable onPress={() => navigation.navigate('Home')}><Text style={styles.textSignUpLink}>Let’s Login</Text></Pressable>
+                    <Pressable onPress={() => navigation.navigate('Login')}><Text style={styles.textSignUpLink}>Let’s Login</Text></Pressable>
                 </View>
             </View>
         </View>

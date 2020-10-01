@@ -13,15 +13,21 @@ const Login = ({ navigation }) => {
     const [showPassword, setShowPassword] = useState(true);
     const dispatch = useDispatch();
 
-    const { isLogin } = useSelector(
+    const  login  = useSelector(
         (state) => state.auth
     );
 
+    // console.log(login.data)
+
     useEffect(() => {
-        if (isLogin) {
+        if (login.data.msg === 'login success') {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home'}],
+            });
             return navigation.navigate('Home');
         }
-    }, [isLogin, navigation]);
+    }, [login.data.msg, navigation]);
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);

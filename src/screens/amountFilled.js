@@ -1,13 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { Text, View, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native'
+import { Text, View, Image, TextInput, TouchableOpacity, StatusBar, BackHandler } from 'react-native'
+import { cancelTransferCreator } from '../redux/actions/transaction';
+import { addToTransferCreator } from '../redux/actions/transaction';
+import { useDispatch, useSelector } from 'react-redux'
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import IconPencil from 'react-native-vector-icons/SimpleLineIcons';
 import profileImg from '../assets/img/lawless.jpg'
+import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
+
+
+
+
 
 import style from '../styles/amountFilled'
 
-const AmountFilled = () => {
+const AmountFilled = ({ navigation }) => {
+    const dispatch = useDispatch()
+
+    const backAction = () => {
+        navigation.goBack()
+        return dispatch(cancelTransferCreator());
+    };
+
+    const data = useSelector(state => state.transaction.transfer)
+    console.log(data)
+
+    useEffect(() => {
+        BackHandler.addEventListener("hardwareBackPress", backAction);
+        return () =>
+            BackHandler.removeEventListener("hardwareBackPress", backAction);
+    }, []);
+
     return (
         <View style={{ ...style.navbarContainer, }}>
             <StatusBar barStyle="default" backgroundColor="#6379F4" />
@@ -20,7 +45,11 @@ const AmountFilled = () => {
                         paddingHorizontal: 10,
                     }}>
                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                        <TouchableOpacity style={{ paddingLeft: 10 }}>
+                        <TouchableOpacity style={{ paddingLeft: 10 }}
+                            onPress={() => {
+                                navigation.goBack()
+                                dispatch(cancelTransferCreator())
+                            }}>
                             <Icon name="arrowleft" size={30} color="white" />
                         </TouchableOpacity>
                         <Text
@@ -34,10 +63,13 @@ const AmountFilled = () => {
                         </Text>
                     </View>
                     <View style={{ ...style.userContainer }}>
-                        <Image source={profileImg} style={{ ...style.profileImg }} />
+                        {data === null ? <Image source={imgPlaceHolder} style={style.profileImg} />
+                            : data.length ? <Image source={{ uri: data.avatar }} style={{ ...style.profileImg, }} />
+                                : <Image source={imgPlaceHolder} style={style.profileImg} />}
+                        {/* <Image source={profileImg} style={{ ...style.profileImg }} /> */}
                         <View style={{ ...style.userTextContainer, }}>
-                            <Text>kimung</Text>
-                            <Text>082112524515</Text>
+                            <Text>{data.username}</Text>
+                            <Text>{data.phone_number}</Text>
                         </View>
                     </View>
                 </View>
