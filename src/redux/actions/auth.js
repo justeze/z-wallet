@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { authLogin, authRegister, updateUser } from "../../utils/reqData";
+import { authLogin, authRegister, getPin, updateUser } from "../../utils/reqData";
 
 export const authRegisterCreator = (data) => {
   return {
@@ -24,5 +24,10 @@ export const updateUserCreator = (username, password, pin, image, email) => {
 export const LoggedOut = () => {
   return {
     type: actions.AUTH_LOGOUT,
+  };
+};
+export const clearPin = () => {
+  return {
+    type: actions.AUTH_CLEAR_PIN,
   };
 };

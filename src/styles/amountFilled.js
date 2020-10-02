@@ -50,5 +50,14 @@ export default StyleSheet.create({
     },
     notesInput: {
         marginLeft: 10
+    },
+    confirmBtn: {
+        width: 380,
+        height: 60,
+        borderRadius: 12,
+        marginTop: 150,
+        marginBottom: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });

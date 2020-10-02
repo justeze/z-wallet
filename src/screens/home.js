@@ -11,7 +11,7 @@ import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
 
 const Home = ({ navigation }) => {
     const auth = useSelector((state) => state.auth);
-    // console.log(auth.data)
+    console.log(auth.data)
     return (
         <View style={{ flexDirection: 'column' }}>
             <View style={{ ...style.userContainer, flexDirection: 'row' }}>
@@ -38,8 +38,8 @@ const Home = ({ navigation }) => {
             </View>
             <View style={{ ...style.balanceContainer, flexDirection: 'column', backgroundColor: '#6379F4' }}>
                 <Text style={{ color: 'white' }}>Balance</Text>
-                <Text style={{ color: 'white', fontSize: 25 }}>Rp 120.000</Text>
-                <Text style={{ color: 'white' }}>082112524515</Text>
+                <Text style={{ color: 'white', fontSize: 25 }}>Rp {auth.data.balance}</Text>
+                <Text style={{ color: 'white' }}>{auth.data.phone_number}</Text>
             </View>
             <View style={{ ...style.actionBtn, flexDirection: 'row' }}>
                 <TouchableOpacity style={{ ...style.trfBtn, flexDirection: 'row' }} onPress={() => {

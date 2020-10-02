@@ -42,9 +42,7 @@ export const updateUser = (username, password, pin, image, email) => {
       accept: 'application/json',
     },
   };
-  // console.log(data)
-  const url = 'http://192.168.0.4:9000/auth/update';
-  return Axios.patch(url, data, config);
+  return Axios.patch('http://192.168.0.4:9000/auth/update', data, config);
 };
 
 export const transactionTransfer = (data) => {

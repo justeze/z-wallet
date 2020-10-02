@@ -57,7 +57,7 @@ const UserProfile = ({ navigation }) => {
                         <Text style={style.editTxt}>Edit</Text>
                     </View>
                     <Text style={style.name}>{auth.data.username}</Text>
-                    <Text style={style.phone}>+62305-4545-4545</Text>
+                <Text style={style.phone}>{auth.data.phone_number}</Text>
                 </View>
                 <View style={{ padding: 20, }}>
                     <View style={style.listOperation}>

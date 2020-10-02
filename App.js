@@ -14,6 +14,8 @@ import PinSuccess from './src/screens/pinSuccess'
 import Search from './src/screens/searchReceiver'
 // import History from './src/screens/history'
 import AmountFilled from './src/screens/amountFilled'
+import PinConfirmation from './src/screens/pinConfirmation'
+
 import UserProfile from './src/screens/userProfile'
 
 
@@ -41,6 +43,7 @@ const App = () => {
                             <Stack.Screen name='SearchReceiver' component={Search} />
                             {/* <Stack.Screen name='History' component={History} /> */}
                             <Stack.Screen name='AmountFilled' component={AmountFilled} />
+                            <Stack.Screen name='PinConfirmation' component={PinConfirmation} />
                             <Stack.Screen name='UserProfile' component={UserProfile} />
                         </Stack.Navigator>
                         {/* <Register/> */}

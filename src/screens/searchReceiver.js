@@ -63,13 +63,13 @@ const Search = ({ navigation }) => {
             {/* <View style={{flex: 1}}> */}
             {user.length ? (
                 <ScrollView style={{ height: 280 }}>
-                    {user.map((user) => {
+                    {user.map((user, index) => {
                         return (
                             <TouchableOpacity onPress={() => {
                                 dispatch(addToTransferCreator(user.id, user.username, user.phone_number, user.avatar))
                                 navigation.navigate('AmountFilled')
                             }}>
-                                <View style={{ ...style.searchResultContainer, }}>
+                                <View style={{ ...style.searchResultContainer, }} key={index}>
                                     {user === null ? <Image source={imgPlaceHolder} style={style.profileImg} />
                                         : user.length ? <Image source={{ uri: user.avatar }} style={{ ...style.profileImg, }} />
                                             : <Image source={imgPlaceHolder} style={style.profileImg} />}

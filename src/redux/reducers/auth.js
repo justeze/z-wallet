@@ -33,27 +33,27 @@ const authReducer = (state = initialState, { type, payload }) => {
         isRejected: false,
         isLogin: true,
       };
-      case actions.AUTH_REGISTER + actions.PENDING:
-        return {
-          ...state,
-          isPending: true,
-        };
-      case actions.AUTH_REGISTER + actions.REJECTED:
-        return {
-          ...state,
-          isRejected: true,
-          data: payload,
-          isPending: false,
-        };
-      case actions.AUTH_REGISTER + actions.FULFILLED:
-        return {
-          ...state,
-          isFulfilled: true,
-          isPending: false,
-          data: payload.data.data,
-          isRejected: false,
-          // isLogin: true,
-        };
+    case actions.AUTH_REGISTER + actions.PENDING:
+      return {
+        ...state,
+        isPending: true,
+      };
+    case actions.AUTH_REGISTER + actions.REJECTED:
+      return {
+        ...state,
+        isRejected: true,
+        data: payload,
+        isPending: false,
+      };
+    case actions.AUTH_REGISTER + actions.FULFILLED:
+      return {
+        ...state,
+        isFulfilled: true,
+        isPending: false,
+        data: payload.data.data,
+        isRejected: false,
+        // isLogin: true,
+      };
     case actions.AUTH_EDITUSER + actions.PENDING:
       return {
         ...state,
@@ -85,7 +85,11 @@ const authReducer = (state = initialState, { type, payload }) => {
         isFulfilled: false,
         isRejected: false,
       }
-
+    case actions.AUTH_CLEAR_PIN:
+      return {
+        ...state,
+        pin: '',
+      }
     default:
       return state;
   }

@@ -6,6 +6,7 @@ export const AUTH_LOGIN = 'authLogin'
 export const AUTH_REGISTER = 'authRegister'
 export const AUTH_EDITUSER = 'authEditUser'
 export const AUTH_LOGOUT = 'authLogout'
+export const AUTH_CLEAR_PIN= 'clearPin'
 
 export const ADD_TRANSFER = 'addTransfer'
 export const CANCEL_TRANSFER = 'cancelTransfer'
