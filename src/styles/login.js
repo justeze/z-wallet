@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
       borderTopRightRadius: 30,
       borderTopLeftRadius: 30,
       paddingHorizontal: '8%',
+      // paddingVertical: 50
       justifyContent: 'space-evenly',
       // justifyContent: 'space-around',
    },
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
    textForgotPass: {
       textAlign: 'right',
       color: 'rgba(58, 61, 66, 0.8)',
-      marginTop: 15,
+      // marginTop: 15,
    },
    buttonLogin: {
       width: '100%',

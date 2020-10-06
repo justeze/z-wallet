@@ -14,14 +14,12 @@ const Register = ({ navigation }) => {
     const dispatch = useDispatch();
 
     const msg = useSelector((state) => state.auth.data);
-    
-    // console.log(msg.msg)
 
     useEffect(() => {
         if (msg.msg === 'register success') {
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'SecurityPin'}],
+                routes: [{ name: 'SecurityPin' }],
             });
             return navigation.navigate('SecurityPin');
         }
@@ -31,15 +29,28 @@ const Register = ({ navigation }) => {
         setShowPassword(!showPassword);
     };
 
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, errors } = useForm();
 
     const onSubmit = (data) => {
-        // console.log(data)
         dispatch(authRegisterCreator(data));
     };
 
+    const validateEmail = value => {
+        if (value === /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/) {
+            return true
+        }
+        return false
+    }
+
+    const validatePassword = value => {
+        if (value === /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/) {
+            return true
+        } 
+        return false
+    }
+
     return (
-        <View style={{...styles.container, backgroundColor: '#E5E5E5'}}>
+        <View style={{ ...styles.container, backgroundColor: '#E5E5E5' }}>
             <View style={styles.containerTop}>
                 <Text style={styles.appText}>Zwallet</Text>
             </View>
@@ -67,13 +78,17 @@ const Register = ({ navigation }) => {
                         />
                     )}
                     name="username"
-                    rules={{ required: true }}
+                    rules={{ required: true, maxLength: 8 }}
                     defaultValue=""
                 />
+                {errors.username && errors.username.type === 'required' && <Text style={{ color: 'red' }}>Username is required.</Text>}
+                {errors.username && errors.username.type === 'maxLength' && <Text style={{ color: 'red' }}>Username is max 8</Text>}
+
                 <Controller
                     control={control}
                     render={({ onChange, onBlur, value }) => (
                         <Input
+                            name='email'
                             placeholder="Enter your e-mail"
                             leftIcon={
                                 <Icon
@@ -92,13 +107,16 @@ const Register = ({ navigation }) => {
                         />
                     )}
                     name="email"
-                    rules={{ required: true }}
+                    rules={{ required: true, validate: validateEmail }}
                     defaultValue=""
                 />
+                {errors.email && <Text style={{ color: 'red' }}>email failed</Text>}
+
                 <Controller
                     control={control}
                     render={({ onChange, onBlur, value }) => (
                         <Input
+                            name='password'
                             placeholder="Enter your password"
                             leftIcon={
                                 <Icon
@@ -125,12 +143,20 @@ const Register = ({ navigation }) => {
                         />
                     )}
                     name="password"
-                    rules={{ required: true }}
+                    rules={{ required: true, validate: validatePassword }}
                     defaultValue=""
                 />
-                <Pressable style={styles.buttonLogin} onPress={handleSubmit(onSubmit)}>
-                    <Text style={styles.buttonLoginText}>Sign Up</Text>
-                </Pressable>
+                {errors.password && <Text style={{ color: 'red' }}>password failed</Text>}
+                
+                {errors.password || errors.email ? (
+                    <View style={styles.buttonLoginDisabled}>
+                        <Text style={styles.buttonLoginTextDisabled}>Register</Text>
+                    </View>
+                ) : (
+                        <Pressable style={styles.buttonLogin} onPress={handleSubmit(onSubmit)}>
+                            <Text style={styles.buttonLoginText}>Register</Text>
+                        </Pressable>
+                    )}
                 <View style={styles.textSignUpContainer}>
                     <Text style={styles.textSignUp}>Already have an account? </Text>
                     <Pressable onPress={() => navigation.navigate('Login')}><Text style={styles.textSignUpLink}>Let’s Login</Text></Pressable>

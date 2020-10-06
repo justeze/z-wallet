@@ -11,7 +11,7 @@ const SecurityPin = ({ navigation }) => {
     const [pin, setPin] = useState('');
     const dispatch = useDispatch();
     const auth = useSelector((state) => state.auth.data);
-    console.log(auth)
+    // console.log(auth)
 
     if (auth.msg === 'edit success') {
         navigation.reset({

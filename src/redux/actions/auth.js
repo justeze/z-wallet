@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { authLogin, authRegister, getPin, updateUser } from "../../utils/reqData";
+import { authLogin, authRegister, getEmail, updateUser, resetPassword } from "../../utils/reqData";
 
 export const authRegisterCreator = (data) => {
   return {
@@ -31,3 +31,21 @@ export const clearPin = () => {
     type: actions.AUTH_CLEAR_PIN,
   };
 };
+export const getEmailCreator = (data) => {
+  // console.log(data)
+  return {
+    type: actions.AUTH_GET_EMAIL,
+    payload: getEmail(data)
+  }
+}
+export const clearEmailState = () => {
+  return {
+    type: actions.AUTH_CLEAR_EMAIL
+  }
+}
+export const resetPasswordCreator = (data) => {
+  return {
+    type: actions.AUTH_RESET_PASSWORD,
+    payload: resetPassword(data)
+  }
+}

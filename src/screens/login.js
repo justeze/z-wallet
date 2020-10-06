@@ -12,18 +12,16 @@ import * as color from '../styles/colorStyles';
 const Login = ({ navigation }) => {
     const [showPassword, setShowPassword] = useState(true);
     const dispatch = useDispatch();
-
-    const  login  = useSelector(
+    // console.log(login)
+    const login = useSelector(
         (state) => state.auth
     );
-
-    // console.log(login.data)
 
     useEffect(() => {
         if (login.data.msg === 'login success') {
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'Home'}],
+                routes: [{ name: 'Home' }],
             });
             return navigation.navigate('Home');
         }
@@ -44,9 +42,9 @@ const Login = ({ navigation }) => {
             <View style={{ ...styles.containerTop, }}>
                 <Text style={styles.appText}>Zwallet</Text>
             </View>
-            
+
             <View style={styles.containerBottom}>
-                <Text style={styles.loginText}>Login</Text>
+                <Text style={{ ...styles.loginText, }}>Login</Text>
                 <Text style={styles.loginInfoText}>Login to your existing account to access all the features in Zwallet.</Text>
                 <View>
                     <Controller
@@ -74,7 +72,7 @@ const Login = ({ navigation }) => {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {/* {errors.email && <Text>Email is required.</Text>} */}
+                    {errors.email && <Text style={{ color: 'red' }}>Email is required.</Text>}
                 </View>
                 <View>
                     <Controller
@@ -110,8 +108,8 @@ const Login = ({ navigation }) => {
                         rules={{ required: true }}
                         defaultValue=""
                     />
-                    {/* {errors.password && <Text>Password is required.</Text>} */}
-                    <Pressable>
+                    {errors.password && <Text style={{ color: 'red' }}>Password is required.</Text>}
+                    <Pressable onPress={() => navigation.navigate('ResetPassword')}>
                         <Text style={styles.textForgotPass}>Forgot password?</Text>
                     </Pressable>
                 </View>

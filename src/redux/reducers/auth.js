@@ -3,6 +3,8 @@ import * as actions from "../actions/actionTypes";
 const initialState = {
   data: {},
   status: {},
+  email: {},
+  reset: {},
   isLogin: false,
   isPending: false,
   isFulfilled: false,
@@ -85,10 +87,27 @@ const authReducer = (state = initialState, { type, payload }) => {
         isFulfilled: false,
         isRejected: false,
       }
-    case actions.AUTH_CLEAR_PIN:
+    case actions.AUTH_CLEAR_PIN :
       return {
         ...state,
         pin: '',
+      }
+    case actions.AUTH_GET_EMAIL + actions.FULFILLED:
+      // console.log('babi', payload.data.data)
+      return {
+        ...state,
+        email: payload.data.data
+      }
+    case actions.AUTH_RESET_PASSWORD + actions.FULFILLED:
+      return {
+        ...state,
+        reset: payload.data.data
+      }
+    case actions.AUTH_CLEAR_EMAIL:
+      return {
+        ...state,
+        reset: {},
+        email: {}
       }
     default:
       return state;

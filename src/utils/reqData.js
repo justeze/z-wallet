@@ -48,3 +48,11 @@ export const updateUser = (username, password, pin, image, email) => {
 export const transactionTransfer = (data) => {
   return Axios.post(`http://192.168.0.4:9000/transaction/send`, data);
 }
+
+export const getEmail = (data) => {
+  return Axios.post('http://192.168.0.4:9000/auth/getEmail', data)
+}
+
+export const resetPassword = (data) => {
+  return Axios.patch('http://192.168.0.4:9000/auth/changePassword', data)
+}
