@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Vibration } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
 import SmoothPinCode from 'react-native-smooth-pincode-input';
+// import { ch } from '../assets/notif/handleNotification'
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import style from '../styles/pinConfirmation'
+import { showLocalNotification } from '../assets/notif/handleNotification'
+import pushNotif from 'react-native-push-notification'
 import { transferToConfirmationCreator } from '../redux/actions/transaction';
 
 const SecurityPin = ({ navigation }) => {
@@ -18,9 +21,22 @@ const SecurityPin = ({ navigation }) => {
     const { amount, note, sender_id, receiver_id, category, type } = route.params
     // let newPin = parseInt(pin)
     // console.log(typeof(newPin))
-
+    
+    const channelId = 'kambing'
+    
+    useEffect(() => {
+        pushNotif.createChannel({
+            channelId,
+            channelName: 'kambing ga guling',
+            channelDescription: 'kambing guling',
+            soundName: 'default',
+            importance: 4
+            // vibrate: 
+        })
+    },[])
 
     const handleSubmit = () => {
+        
         let data = {
             pin: pin,
         };
@@ -29,7 +45,7 @@ const SecurityPin = ({ navigation }) => {
                 // console.log(data.pin)
                 if (res.data.data) {
                     setMsg(null)
-                    console.log('success',res.data)
+                    console.log('success', res.data)
                     const data = {
                         amount: amount,
                         note: note,
@@ -38,6 +54,11 @@ const SecurityPin = ({ navigation }) => {
                         category: category,
                         type: type
                     }
+                    showLocalNotification(
+                        'Zwallet',
+                        `Transfer success`,
+                        channelId,
+                    );
                     dispatch(transferToConfirmationCreator(data))
                     navigation.reset({
                         index: 0,
@@ -46,7 +67,7 @@ const SecurityPin = ({ navigation }) => {
                     navigation.navigate('Home')
                     // console.log(res)
                 } else {
-                    console.log('success',res.data)
+                    console.log('success', res.data)
                     setMsg('your pin is wrong')
                 }
             })
