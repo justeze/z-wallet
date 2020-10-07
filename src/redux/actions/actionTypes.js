@@ -14,6 +14,7 @@ export const AUTH_RESET_PASSWORD = 'resetPassword'
 export const ADD_TRANSFER = 'addTransfer'
 export const CANCEL_TRANSFER = 'cancelTransfer'
 export const TRANSFER_TO_CONFIRM = 'transferToConfirm'
+export const GET_HISTORY = 'getHistory'
 
 export const USERS_FETCH = 'fetchUser'
 export const USERS_FETCH_SEARCH = 'fetchUserSearch'

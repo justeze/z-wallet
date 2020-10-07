@@ -12,7 +12,7 @@ import Home from './src/screens/home'
 import SecurityPin from './src/screens/securityPin'
 import PinSuccess from './src/screens/pinSuccess'
 import Search from './src/screens/searchReceiver'
-// import History from './src/screens/history'
+import History from './src/screens/history'
 import AmountFilled from './src/screens/amountFilled'
 import PinConfirmation from './src/screens/pinConfirmation'
 import ResetPassword from './src/screens/resetPassword'
@@ -43,7 +43,7 @@ const App = () => {
                             <Stack.Screen name='PinSuccess' component={PinSuccess} />
                             <Stack.Screen name='Home' component={Home} />
                             <Stack.Screen name='SearchReceiver' component={Search} />
-                            {/* <Stack.Screen name='History' component={History} /> */}
+                            <Stack.Screen name='History' component={History} />
                             <Stack.Screen name='AmountFilled' component={AmountFilled} />
                             <Stack.Screen name='PinConfirmation' component={PinConfirmation} />
                             <Stack.Screen name='ResetPassword' component={ResetPassword} />

@@ -1,11 +1,11 @@
 import Axios from 'axios';
 
 export const getUsers = () => {
-  return Axios.get('http://192.168.0.4:9000/');
+  return Axios.get('http://192.168.0.4:9000/user/');
 };
 
 export const getUserSearch = (username) => {
-  return Axios.get(`http://192.168.0.4:9000/?username=${username}&page=1&limit=6`);
+  return Axios.get(`http://192.168.0.4:9000/user/?username=${username}&page=1&limit=6`);
 };
 
 export const authLogin = (data) => {
@@ -55,4 +55,8 @@ export const getEmail = (data) => {
 
 export const resetPassword = (data) => {
   return Axios.patch('http://192.168.0.4:9000/auth/changePassword', data)
+}
+
+export const history = (id) => {
+  return Axios.get(`http://192.168.0.4:9000/transaction/history/${id}`)
 }

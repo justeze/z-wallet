@@ -1,6 +1,6 @@
 import * as actions from './actionTypes';
-import { transactionTransfer } from "../../utils/reqData";
-import { ActionSheetIOS } from 'react-native';
+import { transactionTransfer, history } from "../../utils/reqData";
+// import { ActionSheetIOS } from 'react-native';
 
 export const addToTransferCreator = (id, username, phone_number, image) => {
     // console.log('kambing')
@@ -22,5 +22,13 @@ export const transferToConfirmationCreator = (data) => {
     return {
         type: actions.TRANSFER_TO_CONFIRM,
         payload: transactionTransfer(data)
+    }
+}
+
+export const historyCreator = (id) => {
+    // console.log('kambing')
+    return {
+        type: actions.GET_HISTORY,
+        payload: history(id)
     }
 }

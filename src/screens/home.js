@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { historyCreator } from '../redux/actions/transaction';
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import style from '../styles/home'
 import profileImg from '../assets/img/lawless.jpg'
@@ -11,7 +13,15 @@ import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
 
 const Home = ({ navigation }) => {
     const auth = useSelector((state) => state.auth);
-    console.log(auth.data)
+    const currentUser = useSelector(state => state.auth.data);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(historyCreator(currentUser.id));
+        // console.log('babi')
+    }, []);
+
+
     return (
         <View style={{ flexDirection: 'column' }}>
             <View style={{ ...style.userContainer, flexDirection: 'row' }}>
@@ -57,7 +67,9 @@ const Home = ({ navigation }) => {
             </View>
             <View style={{ ...style.transactionIndicator, flexDirection: 'row' }}>
                 <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Transaction history</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                    navigation.navigate('History')
+                }}>
                     <Text style={{ fontSize: 15, color: 'blue' }}>See all</Text>
                 </TouchableOpacity>
             </View>
