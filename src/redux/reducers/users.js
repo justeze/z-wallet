@@ -2,6 +2,7 @@ import * as actions from '../actions/actionTypes';
 
 const initialState = {
     users: [],
+    rdmusers: [],
     isPending: false,
     isRejected: false,
     isFulfilled: false
@@ -46,6 +47,13 @@ const userReducer = (state = initialState, { type, payload }) => {
             isFulfilled: true,
             isPending: false,
             users: payload.data.data,
+          }
+        case actions.USERS_GET_RANDOM_USER + actions.FULFILLED:
+          return {
+            ...state,
+            isFulfilled: true,
+            isPending: false,
+            rdmusers: payload.data.data,
           }
         default:
           return state

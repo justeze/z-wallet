@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Dimensions } from 'react-native';
+import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import Splash from '../assets/img/lawless.jpg'
 
 const Splashscreen = ({ navigation }) => {
@@ -16,17 +16,27 @@ const Splashscreen = ({ navigation }) => {
     return (
         <View source={Splash}
             style={{
+                ...styles.container,
                 width: Dimensions.get('window').width,
                 height: Dimensions.get('window').height,
-                backgroundColor: 'white',
-                paddingTop: '70%',
             }}>
-            <Image source={Splash}
-                style={{ width: 192, height: 192, alignSelf: 'center', resizeMode: 'cover' }}>
-
-            </Image>
+            <Text style={styles.title}>Zwallet</Text>
         </View >
     )
 }
 
 export default Splashscreen
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#6379f4',
+        // height,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    title: {
+        fontSize: 32,
+        color: 'white',
+        fontFamily: 'Bold'
+    }
+})

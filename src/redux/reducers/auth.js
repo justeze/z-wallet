@@ -5,6 +5,7 @@ const initialState = {
   status: {},
   email: {},
   reset: {},
+  balance: [],
   isLogin: false,
   isPending: false,
   isFulfilled: false,
@@ -79,15 +80,23 @@ const authReducer = (state = initialState, { type, payload }) => {
         isRejected: false,
         // isLogin: true,
       };
+    case actions.AUTH_GET_BALANCE + actions.FULFILLED:
+      return {
+        ...state,
+        balance: payload.data.data
+      }
     case actions.AUTH_LOGOUT:
       return {
         data: {},
+        email: {},
+        reset: {},
+        balance: [],
         isLogin: false,
         isPending: false,
         isFulfilled: false,
         isRejected: false,
       }
-    case actions.AUTH_CLEAR_PIN :
+    case actions.AUTH_CLEAR_PIN:
       return {
         ...state,
         pin: '',

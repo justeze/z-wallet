@@ -18,17 +18,23 @@ const SecurityPin = ({ navigation }) => {
     const dispatch = useDispatch()
     const route = useRoute()
     const userId = useSelector((state) => state.auth);
+    const target = useSelector(state => state.transaction.transfer)
+    const channelId = 'transaction'
+
+    // const targett = useSelector(state => state.transaction.transferConfirm)
+
+    // console.log('kambing', targett)
+
     const { amount, note, sender_id, receiver_id, category, type } = route.params
     // let newPin = parseInt(pin)
     // console.log(typeof(newPin))
     
-    const channelId = 'kambing'
-    
+
     useEffect(() => {
         pushNotif.createChannel({
             channelId,
-            channelName: 'kambing ga guling',
-            channelDescription: 'kambing guling',
+            channelName: 'transfer',
+            channelDescription: 'kambing',
             soundName: 'default',
             importance: 4
             // vibrate: 
@@ -36,7 +42,6 @@ const SecurityPin = ({ navigation }) => {
     },[])
 
     const handleSubmit = () => {
-        
         let data = {
             pin: pin,
         };
@@ -56,7 +61,7 @@ const SecurityPin = ({ navigation }) => {
                     }
                     showLocalNotification(
                         'Zwallet',
-                        `Transfer success`,
+                        `Transfer to ${target.username} success`,
                         channelId,
                     );
                     dispatch(transferToConfirmationCreator(data))

@@ -17,6 +17,8 @@ const AmountFilled = () => {
     const dispatch = useDispatch()
     const data = useSelector(state => state.transaction.transfer)
     const user = useSelector(state => state.auth.data)
+    const balanceCurrentUser = useSelector(state => state.auth.balance)
+
     // console.log(user.id)
     const [amount, setAmount] = useState('');
     const [note, setNote] = useState('');
@@ -98,7 +100,7 @@ const AmountFilled = () => {
                         setAmount(num);
                     }}
                 />
-                <Text style={{ ...style.balanceAvail, }}>Rp 120.000 available</Text>
+                <Text style={{ ...style.balanceAvail, }}>Rp {balanceCurrentUser.balance} available</Text>
                 <View style={{ ...style.notesInputContainer }}>
                     <IconPencil name='pencil' size={20} style={{ ...style.notesIcon, }} />
                     <TextInput
@@ -108,7 +110,7 @@ const AmountFilled = () => {
                             setNote(text)}
                         />
                 </View>
-                <View style={{ alignItems: 'center', backgroundColor: 'white' }}>
+                <View style={{ alignItems: 'center' }}>
                     <TouchableOpacity style={{ ...style.confirmBtn, backgroundColor: '#6379F4' }}
                         onPress={() => {
                             handleSubmit();

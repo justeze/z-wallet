@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { getUsers, getUserSearch } from "../../utils/reqData";
+import { getUsers, getUserSearch, getQuickAccess } from "../../utils/reqData";
 
 export const requestUsersCreator = () => {
     return {
@@ -13,3 +13,10 @@ export const searchUserCreator = (username) => {
         payload: getUserSearch(username)
     };
 };
+
+export const getRandomUser = (id) => {
+    return {
+        type: actions.USERS_GET_RANDOM_USER,
+        payload: getQuickAccess(id)
+    }
+}

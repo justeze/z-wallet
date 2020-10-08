@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
-import { requestUsersCreator, searchUserCreator } from '../redux/actions/users';
+import { getRandomUser, requestUsersCreator, searchUserCreator } from '../redux/actions/users';
 import { addToTransferCreator, cancelTransferCreator } from '../redux/actions/transaction';
 
 
@@ -13,13 +13,16 @@ import style from '../styles/searchReceiver'
 
 const Search = ({ navigation }) => {
     const user = useSelector((state) => state.user.users)
+    const currentUser = useSelector((state) => state.auth.data.id)
+    const quickAccess = useSelector((state) => state.user.rdmusers)
     const dispatch = useDispatch()
-    
-    
+
+
     // console.log(contact)
-    
+
     useEffect(() => {
         dispatch(requestUsersCreator())
+        dispatch(getRandomUser(currentUser))
     }, [])
     return (
         <View style={{ ...style.mainContainer }}>
@@ -47,12 +50,36 @@ const Search = ({ navigation }) => {
                     Quick Access
                 </Text>
             </View>
-            <View style={{ ...style.quickAccessContainer }}>
-                <View style={{ alignItems: 'center' }}>
-                    <Image source={profileImg} style={{ ...style.profileImg }} />
-                    <Text style={{ paddingTop: 8 }}>markus</Text>
-                    <Text style={{ paddingTop: 5 }}>4561</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingRight: 15 }}>
+                <ScrollView horizontal={true}>
+                {quickAccess.map((item) => {
+                    return (
+                        <View style={{ ...style.quickAccessContainer }}>
+                            <View style={{ alignItems: 'center' }}>
+                                {item === null ? <Image source={imgPlaceHolder} style={style.profileImg} />
+                                    : item.length ? <Image source={{ uri: item.avatar }} style={{ ...style.profileImg, }} />
+                                        : <Image source={imgPlaceHolder} style={style.profileImg} />}
+                                <Text style={{ paddingTop: 8 }}>{item.username}</Text>
+                                {/* <Text style={{ paddingTop: 5 }}></Text> */}
+                            </View>
+                        </View>
+                    )
+                })}
+                </ScrollView>
+                {/* <View style={{ ...style.quickAccessContainer }}>
+                    <View style={{ alignItems: 'center' }}>
+                        <Image source={profileImg} style={{ ...style.profileImg }} />
+                        <Text style={{ paddingTop: 8 }}>markus</Text>
+                        <Text style={{ paddingTop: 5 }}>4561</Text>
+                    </View>
                 </View>
+                <View style={{ ...style.quickAccessContainer }}>
+                    <View style={{ alignItems: 'center' }}>
+                        <Image source={profileImg} style={{ ...style.profileImg }} />
+                        <Text style={{ paddingTop: 8 }}>markus</Text>
+                        <Text style={{ paddingTop: 5 }}>4561</Text>
+                    </View>
+                </View> */}
             </View>
             <View style={{ ...style.searchResultText, }}>
                 {user.length ?

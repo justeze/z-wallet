@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { authLogin, authRegister, getEmail, updateUser, resetPassword } from "../../utils/reqData";
+import { authLogin, authRegister, getEmail, updateUser, resetPassword, getBalance } from "../../utils/reqData";
 
 export const authRegisterCreator = (data) => {
   return {
@@ -47,5 +47,12 @@ export const resetPasswordCreator = (data) => {
   return {
     type: actions.AUTH_RESET_PASSWORD,
     payload: resetPassword(data)
+  }
+}
+
+export const getBalanceCreator = (id) => {
+  return {
+    type: actions.AUTH_GET_BALANCE,
+    payload: getBalance(id)
   }
 }

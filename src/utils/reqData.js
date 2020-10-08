@@ -60,3 +60,11 @@ export const resetPassword = (data) => {
 export const history = (id) => {
   return Axios.get(`http://192.168.0.4:9000/transaction/history/${id}`)
 }
+
+export const getBalance = (id) => {
+  return Axios.get(`http://192.168.0.4:9000/auth/getBalance/${id}`)
+}
+
+export const getQuickAccess = (id) => {
+  return Axios.get(`http://192.168.0.4:9000/user/quickAccess/?id=${id}`)
+}

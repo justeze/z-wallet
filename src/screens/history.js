@@ -64,12 +64,12 @@ const History = () => {
         );
     });
 
-    const beforeAgain = stateHistory.filter((item) => {
-        return (
-            !thisWeek.includes(item) &&
-            !thisMonth.includes(item)
-        );
-    });
+    // const beforeAgain = stateHistory.filter((item) => {
+    //     return (
+    //         !thisWeek.includes(item) &&
+    //         !thisMonth.includes(item)
+    //     );
+    // });
 
     const historyData = [
         {
@@ -80,10 +80,10 @@ const History = () => {
             date: 'This Month',
             data: thisMonth,
         },
-        {
-            date: 'Before Again',
-            data: beforeAgain,
-        },
+        // {
+        //     date: 'Before Again',
+        //     data: beforeAgain,
+        // },
     ];
 
     return (
@@ -215,11 +215,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: '4%',
         borderRadius: 10,
-        elevation: 3,
+        // elevation: 3,
     },
     textNameTransaction: {
-        fontWeight: '700',
-        fontSize: 16,
+        // fontWeight: '700',
+        fontSize: 15,
     },
     textTransaction: {
         color: '#7A7886',

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
 import { historyCreator } from '../redux/actions/transaction';
+import { getBalanceCreator } from '../redux/actions/auth';
+
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import style from '../styles/home'
@@ -14,13 +16,16 @@ import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
 const Home = ({ navigation }) => {
     const auth = useSelector((state) => state.auth);
     const currentUser = useSelector(state => state.auth.data);
+    const balanceCurrentUser = useSelector(state => state.auth.balance)
+    // const stateHistory = useSelector(state => state.transaction.history);
+
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(historyCreator(currentUser.id));
+        dispatch(getBalanceCreator(currentUser.id))
         // console.log('babi')
     }, []);
-
 
     return (
         <View style={{ flexDirection: 'column' }}>
@@ -48,7 +53,8 @@ const Home = ({ navigation }) => {
             </View>
             <View style={{ ...style.balanceContainer, flexDirection: 'column', backgroundColor: '#6379F4' }}>
                 <Text style={{ color: 'white' }}>Balance</Text>
-                <Text style={{ color: 'white', fontSize: 25 }}>Rp {auth.data.balance}</Text>
+
+                <Text style={{ color: 'white', fontSize: 25 }}>Rp {balanceCurrentUser.balance}</Text>
                 <Text style={{ color: 'white' }}>{auth.data.phone_number}</Text>
             </View>
             <View style={{ ...style.actionBtn, flexDirection: 'row' }}>
@@ -73,18 +79,18 @@ const Home = ({ navigation }) => {
                     <Text style={{ fontSize: 15, color: 'blue' }}>See all</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{ ...style.transactionContainer, }}>
-                <View>
-                    <Image source={profileImg} style={{ ...style.userImg, }} />
+                <View style={{ ...style.transactionContainer, }}>
+                    <View>
+                        <Image source={profileImg} style={{ ...style.userImg, }} />
+                    </View>
+                    <View style={{ ...style.unameTransHistory, }}>
+                        <Text style={{ fontSize: 16 }}>kimung</Text>
+                        <Text style={{ fontSize: 16 }}>transfer</Text>
+                    </View>
+                    <View style={{ ...style.transactionPrice, }}>
+                        <Text style={{ alignSelf: 'flex-end' }}>kimung</Text>
+                    </View>
                 </View>
-                <View style={{ ...style.unameTransHistory, }}>
-                    <Text style={{ fontSize: 16 }}>kimung</Text>
-                    <Text style={{ fontSize: 16 }}>transfer</Text>
-                </View>
-                <View style={{ ...style.transactionPrice, }}>
-                    <Text style={{ alignSelf: 'flex-end' }}>kimung</Text>
-                </View>
-            </View>
         </View>
     )
 }
