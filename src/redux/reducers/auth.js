@@ -123,6 +123,29 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         update: payload.data.data
       }
+    case actions.AUTH_UPDATE_PIN + actions.PENDING:
+      return {
+        ...state,
+        isPending: true,
+        isFulfilled: false,
+        isRejected: false,
+      }
+    case actions.AUTH_UPDATE_PIN + actions.REJECTED:
+      return {
+        ...state,
+        update: payload.data,
+        isPending: false,
+        isFulfilled: false,
+        isRejected: true,
+      }
+    case actions.AUTH_UPDATE_PIN + actions.FULFILLED:
+      return {
+        ...state,
+        update: payload.data.data,
+        isPending: false,
+        isFulfilled: true,
+        isRejected: false,
+      }
     case actions.AUTH_CLEAR_STATE:
       return {
         ...state,

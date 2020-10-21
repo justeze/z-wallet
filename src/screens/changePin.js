@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import SmoothPinCode from 'react-native-smooth-pincode-input';
+import { useNavigation, useRoute } from '@react-navigation/native';
 // import { ch } from '../assets/notif/handleNotification'
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import style from '../styles/pinConfirmation'
 
 
-const ChangePin = ({ navigation }) => {
+const ChangePin = () => {
     const [pin, setPin] = useState('');
     const [msg, setMsg] = useState(null);
+    const navigation = useNavigation();
     
     const handleSubmit = () => {
-
+        navigation.navigate('ChangePinFilled', {
+            currentPin: pin
+        })
     }
 
     return (
@@ -23,10 +27,10 @@ const ChangePin = ({ navigation }) => {
                         // dispatch(cancelTransferCreator())
                         navigation.goBack()
                     }} />
-                <Text style={{ marginLeft: 15, fontSize: 20 }}>Enter Your PIN</Text>
+                <Text style={{ marginLeft: 15, fontSize: 20 }}>Change Pin</Text>
             </View>
-            <Text style={{ ...style.contentTextLoginDesc, color: '#3A3D42', paddingTop: 40 }}>Enter your 6 digit PIN for confirmation</Text>
-            <Text style={{ ...style.contentTextLoginDesc, color: '#3A3D42' }}>continue transfering money</Text>
+            <Text style={{ ...style.contentTextLoginDesc, color: '#3A3D42', paddingTop: 40 }}>Enter your current 6 digits Zwallet PIN beloew to</Text>
+            <Text style={{ ...style.contentTextLoginDesc, color: '#3A3D42' }}>continue to the next step</Text>
             <View style={style.formPin}>
                 <SmoothPinCode
                     autoFocus={true}
@@ -43,7 +47,7 @@ const ChangePin = ({ navigation }) => {
                     handleSubmit()
                 }}>
                 <Text style={{ color: 'white', fontSize: 20 }}>
-                    Transfer Now
+                    Continue
                 </Text>
             </TouchableOpacity>
             {/* <View style={{ alignItems: 'center', backgroundColor: 'white' }}>

@@ -25,6 +25,8 @@ import UserProfile from './src/screens/userProfile'
 import SplashScreen from './src/screens/splashScreen'
 import ChangePassword from './src/screens/changePassword';
 import ChangePin from './src/screens/changePin';
+import ChangePinFilled from './src/screens/changePinFilled';
+
 
 
 
@@ -54,6 +56,8 @@ const App = () => {
                             <Stack.Screen name='UserProfile' component={UserProfile} />
                             <Stack.Screen name='ChangePassword' component={ChangePassword} />
                             <Stack.Screen name='ChangePin' component={ChangePin} />
+                            <Stack.Screen name='ChangePinFilled' component={ChangePinFilled} />
+
 
                         </Stack.Navigator>
                         {/* <Register/> */}

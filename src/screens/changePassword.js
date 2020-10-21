@@ -43,7 +43,7 @@ const ChangePassword = ({ navigation }) => {
 
     const onSubmit = (data) => {
         if (data.newPassword !== data.newPasswordRepeat) {
-            // console.log('Password didnt match');
+            console.log('Password didnt match');
             return;
         } else {
             dispatch(updatePwdCreator(id, data));

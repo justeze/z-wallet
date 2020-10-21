@@ -76,3 +76,7 @@ export const getQuickAccess = (id) => {
 export const changePassword = (id, data) => {
   return Axios.patch(`http://192.168.0.5:9000/auth/changepwd/?id=${id}`, data)
 }
+
+export const changePin = (id, data) => {
+  return Axios.patch(`http://192.168.0.5:9000/auth/changepin/?id=${id}`, data)
+}

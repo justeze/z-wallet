@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { authLogin, authRegister, getEmail, updateUser, resetPassword, getBalance, changePassword } from "../../utils/reqData";
+import { authLogin, authRegister, getEmail, updateUser, resetPassword, getBalance, changePassword, changePin } from "../../utils/reqData";
 
 export const authRegisterCreator = (data) => {
   return {
@@ -61,6 +61,13 @@ export const updatePwdCreator = (id, data) => {
   return {
     type: actions.AUTH_UPDATE_PASSWORD,
     payload: changePassword(id, data)
+  }
+}
+
+export const updatePinCreator = (id, data) => {
+  return {
+    type: actions.AUTH_UPDATE_PIN,
+    payload: changePin(id, data)
   }
 }
 
