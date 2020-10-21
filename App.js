@@ -23,6 +23,9 @@ import UserProfile from './src/screens/userProfile'
 
 
 import SplashScreen from './src/screens/splashScreen'
+import ChangePassword from './src/screens/changePassword';
+import ChangePin from './src/screens/changePin';
+
 
 
 const { persistor, store } = configureStore();
@@ -48,8 +51,10 @@ const App = () => {
                             <Stack.Screen name='PinConfirmation' component={PinConfirmation} />
                             <Stack.Screen name='ResetPassword' component={ResetPassword} />
                             <Stack.Screen name='ResetPasswordFilled' component={ResetPasswordFilled} />
-
                             <Stack.Screen name='UserProfile' component={UserProfile} />
+                            <Stack.Screen name='ChangePassword' component={ChangePassword} />
+                            <Stack.Screen name='ChangePin' component={ChangePin} />
+
                         </Stack.Navigator>
                         {/* <Register/> */}
                     </NavigationContainer>

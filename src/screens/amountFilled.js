@@ -4,7 +4,7 @@ import { Text, View, Image, TextInput, TouchableOpacity, StatusBar, BackHandler 
 import { cancelTransferCreator } from '../redux/actions/transaction';
 import { addToTransferCreator } from '../redux/actions/transaction';
 import { useDispatch, useSelector } from 'react-redux'
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import IconPencil from 'react-native-vector-icons/SimpleLineIcons';
@@ -79,9 +79,9 @@ const AmountFilled = () => {
                         </Text>
                     </View>
                     <View style={{ ...style.userContainer }}>
-                        {data === null ? <Image source={imgPlaceHolder} style={style.profileImg} />
-                            : data.length ? <Image source={{ uri: data.avatar }} style={{ ...style.profileImg, }} />
-                                : <Image source={imgPlaceHolder} style={style.profileImg} />}
+                        {data.avatar === '' ? <Image source={imgPlaceHolder} style={style.userImg} />
+                            : data.avatar !== '' ? <Image source={{ uri: data.avatar }} style={{ ...style.userImg, }} />
+                                : <Image source={imgPlaceHolder} style={style.userImg} />}
                         {/* <Image source={profileImg} style={{ ...style.profileImg }} /> */}
                         <View style={{ ...style.userTextContainer, }}>
                             <Text>{data.username}</Text>
@@ -105,10 +105,10 @@ const AmountFilled = () => {
                     <IconPencil name='pencil' size={20} style={{ ...style.notesIcon, }} />
                     <TextInput
                         style={{ ...style.notesInput, }}
-                        placeholder='add some notes' 
-                        onChangeText={(text) => 
+                        placeholder='add some notes'
+                        onChangeText={(text) =>
                             setNote(text)}
-                        />
+                    />
                 </View>
                 <View style={{ alignItems: 'center' }}>
                     <TouchableOpacity style={{ ...style.confirmBtn, backgroundColor: '#6379F4' }}

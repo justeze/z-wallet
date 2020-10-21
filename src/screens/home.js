@@ -34,8 +34,8 @@ const Home = ({ navigation }) => {
                     navigation.navigate('UserProfile')
                 }}>
                     <View>
-                        {auth.data === null ? <Image source={imgPlaceHolder} style={style.userImg} />
-                            : auth.data.length ? <Image source={{ uri: auth.data.avatar }} style={{ ...style.userImg, }} />
+                        {auth.data.avatar === '' ? <Image source={imgPlaceHolder} style={style.userImg} />
+                            : auth.data.avatar !== '' ? <Image source={{ uri: auth.data.avatar }} style={{ ...style.userImg, }} />
                                 : <Image source={imgPlaceHolder} style={style.userImg} />}
                         {/* <Image source={imgPlaceHolder} style={style.userImg} /> */}
                     </View>
@@ -79,18 +79,18 @@ const Home = ({ navigation }) => {
                     <Text style={{ fontSize: 15, color: 'blue' }}>See all</Text>
                 </TouchableOpacity>
             </View>
-                <View style={{ ...style.transactionContainer, }}>
-                    <View>
-                        <Image source={profileImg} style={{ ...style.userImg, }} />
-                    </View>
-                    <View style={{ ...style.unameTransHistory, }}>
-                        <Text style={{ fontSize: 16 }}>kimung</Text>
-                        <Text style={{ fontSize: 16 }}>transfer</Text>
-                    </View>
-                    <View style={{ ...style.transactionPrice, }}>
-                        <Text style={{ alignSelf: 'flex-end' }}>kimung</Text>
-                    </View>
+            <View style={{ ...style.transactionContainer, }}>
+                <View>
+                    <Image source={profileImg} style={{ ...style.userImg, }} />
                 </View>
+                <View style={{ ...style.unameTransHistory, }}>
+                    <Text style={{ fontSize: 16 }}>kimung</Text>
+                    <Text style={{ fontSize: 16 }}>transfer</Text>
+                </View>
+                <View style={{ ...style.transactionPrice, }}>
+                    <Text style={{ alignSelf: 'flex-end' }}>kimung</Text>
+                </View>
+            </View>
         </View>
     )
 }

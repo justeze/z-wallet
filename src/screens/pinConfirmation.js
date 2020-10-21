@@ -28,7 +28,7 @@ const SecurityPin = ({ navigation }) => {
     const { amount, note, sender_id, receiver_id, category, type } = route.params
     // let newPin = parseInt(pin)
     // console.log(typeof(newPin))
-    
+
 
     useEffect(() => {
         pushNotif.createChannel({
@@ -39,18 +39,19 @@ const SecurityPin = ({ navigation }) => {
             importance: 4
             // vibrate: 
         })
-    },[])
+    }, [])
 
     const handleSubmit = () => {
         let data = {
-            pin: pin,
+            id: userId.data.id,
+            pin: pin
         };
-        Axios.post(`http://192.168.0.4:9000/auth/getpin?id=${userId.data.id}`, data)
+        Axios.post(`http://192.168.0.5:9000/auth/getpin`, data)
             .then((res) => {
                 // console.log(data.pin)
                 if (res.data.data) {
                     setMsg(null)
-                    console.log('success', res.data)
+                    // console.log('success', res.data)
                     const data = {
                         amount: amount,
                         note: note,
@@ -72,8 +73,8 @@ const SecurityPin = ({ navigation }) => {
                     navigation.navigate('Home')
                     // console.log(res)
                 } else {
-                    console.log('success', res.data)
-                    setMsg('your pin is wrong')
+                    // console.log('success', res.data)
+                    setMsg('wrong pin')
                 }
             })
             .catch((err) => {
@@ -111,7 +112,7 @@ const SecurityPin = ({ navigation }) => {
                 }}>
                 <Text style={{ color: 'white', fontSize: 20 }}>
                     Transfer Now
-                    </Text>
+                </Text>
             </TouchableOpacity>
             {/* <View style={{ alignItems: 'center', backgroundColor: 'white' }}>
                 

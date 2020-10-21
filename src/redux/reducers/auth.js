@@ -2,10 +2,12 @@ import * as actions from "../actions/actionTypes";
 
 const initialState = {
   data: {},
+  update: {},
   status: {},
   email: {},
   reset: {},
   balance: [],
+  // pinConf: null,
   isLogin: false,
   isPending: false,
   isFulfilled: false,
@@ -66,7 +68,8 @@ const authReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isRejected: true,
-        data: payload,
+        // data: payload,
+        update: payload,
         isPending: false,
       };
     case actions.AUTH_EDITUSER + actions.FULFILLED:
@@ -75,7 +78,8 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         isFulfilled: true,
         isPending: false,
-        data: payload.data.data,
+        // data: payload.data.data,
+        update: payload.data.data,
         status: payload.data.msg,
         isRejected: false,
         // isLogin: true,
@@ -88,9 +92,11 @@ const authReducer = (state = initialState, { type, payload }) => {
     case actions.AUTH_LOGOUT:
       return {
         data: {},
+        update: {},
         email: {},
         reset: {},
         balance: [],
+        // pinConf: null,
         isLogin: false,
         isPending: false,
         isFulfilled: false,
@@ -112,11 +118,17 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         reset: payload.data.data
       }
-    case actions.AUTH_CLEAR_EMAIL:
+    case actions.AUTH_UPDATE_PASSWORD + actions.FULFILLED:
+      return {
+        ...state,
+        update: payload.data.data
+      }
+    case actions.AUTH_CLEAR_STATE:
       return {
         ...state,
         reset: {},
-        email: {}
+        email: {},
+        update: {}
       }
     default:
       return state;

@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import * as color from '../styles/colorStyles';
 import style from '../styles/resetPassword'
-import { resetPasswordCreator, clearEmailState } from '../redux/actions/auth';
+import { resetPasswordCreator, clearState } from '../redux/actions/auth';
 
 const SecurityPin = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const SecurityPin = ({ navigation }) => {
                 password: pass1
             }
             dispatch(resetPasswordCreator(data));
-            dispatch(clearEmailState())
+            dispatch(clearState())
             navigation.navigate('Login')
         }
     }
