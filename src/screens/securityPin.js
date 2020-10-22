@@ -10,8 +10,8 @@ import style from '../styles/securityPin'
 const SecurityPin = ({ navigation }) => {
     const [pin, setPin] = useState('');
     const dispatch = useDispatch();
-    const auth = useSelector((state) => state.auth.data);
-    // console.log(auth)
+    const auth = useSelector((state) => state.auth.update);
+    // console.log(auth.msg)
 
     if (auth.msg === 'edit success') {
         navigation.reset({

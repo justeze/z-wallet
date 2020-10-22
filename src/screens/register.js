@@ -35,20 +35,6 @@ const Register = ({ navigation }) => {
         dispatch(authRegisterCreator(data));
     };
 
-    const validateEmail = value => {
-        if (value === /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/) {
-            return true
-        }
-        return false
-    }
-
-    const validatePassword = value => {
-        if (value === /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/) {
-            return true
-        } 
-        return false
-    }
-
     return (
         <View style={{ ...styles.container, backgroundColor: '#E5E5E5' }}>
             <View style={styles.containerTop}>
@@ -81,8 +67,8 @@ const Register = ({ navigation }) => {
                     rules={{ required: true, maxLength: 8 }}
                     defaultValue=""
                 />
-                {errors.username && errors.username.type === 'required' && <Text style={{ color: 'red' }}>Username is required.</Text>}
-                {errors.username && errors.username.type === 'maxLength' && <Text style={{ color: 'red' }}>Username is max 8</Text>}
+                {errors.username && errors.username.type === 'required' && <Text style={{ color: 'red', marginTop: -40 }}>Required.</Text>}
+                {errors.username && errors.username.type === 'maxLength' && <Text style={{ color: 'red', marginTop: -40 }}>Username is max 8</Text>}
 
                 <Controller
                     control={control}
@@ -107,10 +93,17 @@ const Register = ({ navigation }) => {
                         />
                     )}
                     name="email"
-                    rules={{ required: true, validate: validateEmail }}
+                    rules={{
+                        required: true, pattern: {
+                            value: /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
+                            message: "its not an email"
+                        }
+                    }}
                     defaultValue=""
                 />
-                {errors.email && <Text style={{ color: 'red' }}>email failed</Text>}
+                {errors.email && errors.email.type === 'required' && <Text style={{ color: 'red', marginTop: -40 }}>Required.</Text>}
+                {errors.email && errors.email.type === 'pattern' &&<Text style={{ color: 'red', marginTop: -40 }}>{errors.email.message}</Text>}
+                {/* {errors.email && errors.email.type === 'validate' && <Text style={{ color: 'red', marginTop: -40 }}>Its not an email fellas</Text>} */}
 
                 <Controller
                     control={control}
@@ -143,11 +136,18 @@ const Register = ({ navigation }) => {
                         />
                     )}
                     name="password"
-                    rules={{ required: true, validate: validatePassword }}
+                    rules={{
+                        required: true, pattern: {
+                            value: /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/,
+                            message: "Password must contain at least 1 number, and be longer than 8 charaters"
+                        }
+                    }}
                     defaultValue=""
                 />
-                {errors.password && <Text style={{ color: 'red' }}>password failed</Text>}
-                
+                {errors.password && errors.password.type === 'required' && <Text style={{ color: 'red', marginTop: -40 }}>Required.</Text>}
+                {errors.password && errors.password.type === 'pattern' && <Text style={{ color: 'red', marginTop: -40 }}>{errors.password.message}</Text>}
+                {/* {errors.password && errors.password.type === 'validate' && <Text style={{ color: 'red', marginTop: -40 }}>Password must contain at least 1 number, and be longer than 8 charaters</Text>} */}
+
                 {errors.password || errors.email ? (
                     <View style={styles.buttonLoginDisabled}>
                         <Text style={styles.buttonLoginTextDisabled}>Register</Text>

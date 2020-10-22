@@ -50,6 +50,13 @@ const ChangePassword = ({ navigation }) => {
         }
     };
 
+    const validatePassword = value => {
+        if (value === /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/) {
+            return true
+        }
+        return false
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -92,7 +99,7 @@ const ChangePassword = ({ navigation }) => {
                         />
                     )}
                     name="password"
-                    rules={{ required: true }}
+                    rules={{ required: true, validate: validatePassword }}
                     defaultValue=""
                 />
                 {errors.password && <Text style={styles.textFormError}>Password is required.</Text>}
@@ -126,7 +133,7 @@ const ChangePassword = ({ navigation }) => {
                         />
                     )}
                     name="newPassword"
-                    rules={{ required: true }}
+                    rules={{ required: true, validate: validatePassword  }}
                     defaultValue=""
                 />
                 {errors.newPassword && <Text style={styles.textFormError}>New password is required.</Text>}
@@ -160,7 +167,7 @@ const ChangePassword = ({ navigation }) => {
                         />
                     )}
                     name="newPasswordRepeat"
-                    rules={{ required: true }}
+                    rules={{ required: true, validate: validatePassword  }}
                     defaultValue=""
                 />
                 {getValues('newPassword') !== getValues('newPasswordRepeat') && <Text style={styles.textFormError}>Password didn't match.</Text>}

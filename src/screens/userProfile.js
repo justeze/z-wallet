@@ -19,7 +19,7 @@ const UserProfile = ({ navigation }) => {
     const [image, setImage] = useState(null);
 
 
-    console.log(auth.data.avatar)
+    // console.log(auth.data.avatar)
     useEffect(() => {
         if (logout) {
             dispatch(LoggedOut());

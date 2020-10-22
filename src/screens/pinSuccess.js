@@ -1,11 +1,14 @@
 import React from 'react'
 import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { useDispatch } from 'react-redux'
 
 import checkIcon from '../assets/icon/Ellipse-13.png'
 import bgCheckIcon from '../assets/icon/Vector.png'
+import { clearState } from '../redux/actions/auth'
 import style from '../styles/pinSuccess'
 
 const SecurityPin = ({ navigation }) => {
+    const dispatch = useDispatch()
     return (
         <View style={{ ...style.mainContiner }}>
             <View style={{ ...style.header }}>
@@ -26,9 +29,12 @@ const SecurityPin = ({ navigation }) => {
                             index: 0,
                             routes: [{ name: 'Login' }],
                         });
+                        dispatch(clearState())
                     }}
                 >
+                    
                     <Text style={{ color: 'white', fontSize: 20 }}>
+                        
                         Login now!
                     </Text>
                 </TouchableOpacity>
