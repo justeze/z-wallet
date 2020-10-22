@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
         (state) => state.auth
     );
 
-    console.log(login.data)
+    // console.log(login.data)
 
     useEffect(() => {
         if (login.data.msg === 'login success') {

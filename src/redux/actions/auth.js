@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import { authLogin, authRegister, getEmail, updateUser, resetPassword, getBalance, changePassword, changePin } from "../../utils/reqData";
+import { authLogin, authRegister, getEmail, updateUser, resetPassword, getBalance, changePassword, changePin, sendEmail } from "../../utils/reqData";
 
 export const authRegisterCreator = (data) => {
   return {
@@ -31,18 +31,21 @@ export const clearPin = () => {
     type: actions.AUTH_CLEAR_PIN,
   };
 };
-export const getEmailCreator = (data) => {
-  // console.log(data)
+
+export const updatePwdCreator = (id, data) => {
   return {
-    type: actions.AUTH_GET_EMAIL,
-    payload: getEmail(data)
+    type: actions.AUTH_UPDATE_PASSWORD,
+    payload: changePassword(id, data)
   }
 }
-export const clearState = () => {
+
+export const updatePinCreator = (id, data) => {
   return {
-    type: actions.AUTH_CLEAR_STATE
+    type: actions.AUTH_UPDATE_PIN,
+    payload: changePin(id, data)
   }
 }
+
 export const resetPasswordCreator = (data) => {
   return {
     type: actions.AUTH_RESET_PASSWORD,
@@ -57,17 +60,17 @@ export const getBalanceCreator = (id) => {
   }
 }
 
-export const updatePwdCreator = (id, data) => {
+export const sendEmailCreator = (data) => {
+  // console.log(data)
   return {
-    type: actions.AUTH_UPDATE_PASSWORD,
-    payload: changePassword(id, data)
+    type: actions.AUTH_SEND_EMAIL,
+    payload: sendEmail(data)
   }
 }
 
-export const updatePinCreator = (id, data) => {
+export const clearState = () => {
   return {
-    type: actions.AUTH_UPDATE_PIN,
-    payload: changePin(id, data)
+    type: actions.AUTH_CLEAR_STATE
   }
 }
 

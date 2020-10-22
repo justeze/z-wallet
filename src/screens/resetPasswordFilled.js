@@ -23,7 +23,7 @@ const SecurityPin = ({ navigation }) => {
 
 
     const mail = useSelector((state) => state.auth.email)
-    // console.log('kambing',mail)
+    console.log('kambing',mail)
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);

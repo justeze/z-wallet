@@ -1,9 +1,11 @@
+import home from "../../styles/home";
 import * as actions from "../actions/actionTypes";
 
 const initialState = {
   transfer: {},
   transferConfirm: [],
   history: [],
+  historyHome: [],
   isPending: false,
   isFulfilled: false,
   isRejected: false,
@@ -54,13 +56,17 @@ const transactionReducer = (state = initialState, { type, payload }) => {
         isPending: false,
       }
     case actions.GET_HISTORY + actions.FULFILLED:
-      // console.log('asu',payload.data.data)
+      const data = payload.data.data
+      const homeHistory = data.slice(0, 4)
+      console.log('asu', homeHistory)
+
       return {
         ...state,
         isFulfilled: true,
         isRejected: false,
         isPending: false,
-        history: payload.data.data,
+        history: data,
+        historyHome: homeHistory
       }
     default:
       return state

@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+import * as color from './colorStyles';
+
 export default StyleSheet.create({
     userContainer: {
         padding: 20,
@@ -66,6 +68,7 @@ export default StyleSheet.create({
     transactionIndicator: {
         // backgroundColor: 'red',
         marginTop: 30,
+        marginBottom: 20,
         justifyContent: 'space-between',
         alignSelf: 'center',
         width: 365
@@ -89,5 +92,60 @@ export default StyleSheet.create({
         // backgroundColor: 'yellow',
         width: 100,
         marginLeft: 50
-    }
+    },
+    container: {
+        backgroundColor: color.backgroud,
+        flex: 1,
+        // justifyContent: 'space-evenly'
+        // marginTop: 10,
+    },
+    containerTransaction: {
+        backgroundColor: color.white,
+        // marginTop: '5%',
+        marginBottom: '5%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '4%',
+        borderRadius: 10,
+        // elevation: 3,
+    },
+    profileContainer: {
+        flexDirection: 'row',
+    },
+    profileImg: {
+        width: 50,
+        height: 50,
+        borderRadius: 10,
+    },
+    textHelloContainer: {
+        justifyContent: 'space-between',
+        height: 50,
+        marginLeft: 20,
+    },
+    textHello: {
+        fontSize: 16,
+    },
+    textName: {
+        fontWeight: '700',
+        fontSize: 18,
+    },
+    textNameTransaction: {
+        // fontWeight: '700',
+        fontSize: 15,
+    },
+    textTransaction: {
+        color: '#7A7886',
+        fontSize: 14,
+    },
+    textTransactionNumberIncome: {
+        color: color.success,
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    textTransactionNumberOutcome: {
+        color: color.error,
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
 });

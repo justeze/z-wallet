@@ -7,14 +7,12 @@ export const AUTH_REGISTER = 'authRegister'
 export const AUTH_EDITUSER = 'authEditUser'
 export const AUTH_LOGOUT = 'authLogout'
 export const AUTH_CLEAR_PIN = 'clearPin'
-export const AUTH_GET_EMAIL = 'getEmail'
-export const AUTH_CLEAR_STATE = 'clearState'
 export const AUTH_RESET_PASSWORD = 'resetPassword'
 export const AUTH_GET_BALANCE = 'getBalance'
 export const AUTH_UPDATE_PASSWORD = 'updatePassword'
 export const AUTH_UPDATE_PIN = 'updatePin'
-
-
+export const AUTH_SEND_EMAIL = 'sendEmail'
+export const AUTH_CLEAR_STATE = 'clearState'
 // export const AUTH_PIN_CONF = 'authPinConf'
 
 

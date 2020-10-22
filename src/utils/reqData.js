@@ -53,18 +53,6 @@ export const transactionTransfer = (data) => {
   return Axios.post(`http://192.168.0.5:9000/transaction/send`, data);
 }
 
-export const getEmail = (data) => {
-  return Axios.post('http://192.168.0.5:9000/auth/getEmail', data)
-}
-
-export const resetPassword = (data) => {
-  return Axios.patch('http://192.168.0.5:9000/auth/resetPassword', data)
-}
-
-export const history = (id) => {
-  return Axios.get(`http://192.168.0.5:9000/transaction/history/${id}`)
-}
-
 export const getBalance = (id) => {
   return Axios.get(`http://192.168.0.5:9000/auth/getBalance/${id}`)
 }
@@ -80,3 +68,16 @@ export const changePassword = (id, data) => {
 export const changePin = (id, data) => {
   return Axios.patch(`http://192.168.0.5:9000/auth/changepin/?id=${id}`, data)
 }
+
+export const sendEmail = (data) => {
+  return Axios.post('http://192.168.0.5:9000/auth/sendEmail', data)
+}
+
+export const resetPassword = (data) => {
+  return Axios.patch('http://192.168.0.5:9000/auth/resetPassword', data)
+}
+
+export const history = (id) => {
+  return Axios.get(`http://192.168.0.5:9000/transaction/history/${id}`)
+}
+

@@ -26,6 +26,7 @@ import SplashScreen from './src/screens/splashScreen'
 import ChangePassword from './src/screens/changePassword';
 import ChangePin from './src/screens/changePin';
 import ChangePinFilled from './src/screens/changePinFilled';
+import OtpConf from './src/screens/otpConf';
 
 
 
@@ -57,8 +58,7 @@ const App = () => {
                             <Stack.Screen name='ChangePassword' component={ChangePassword} />
                             <Stack.Screen name='ChangePin' component={ChangePin} />
                             <Stack.Screen name='ChangePinFilled' component={ChangePinFilled} />
-
-
+                            <Stack.Screen name='OtpConf' component={OtpConf} />
                         </Stack.Navigator>
                         {/* <Register/> */}
                     </NavigationContainer>

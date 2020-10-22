@@ -1,24 +1,51 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View, Image, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import { historyCreator } from '../redux/actions/transaction';
 import { getBalanceCreator } from '../redux/actions/auth';
 
 
 import Icon from 'react-native-vector-icons/AntDesign';
 import style from '../styles/home'
-import profileImg from '../assets/img/lawless.jpg'
+// import profileImg from '../assets/img/lawless.jpg'
 import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
 
 // import notifIcon from '../assets/icon/shopping-cart.png'
 
+const Item = ({ data }) => {
+    const profilImg = `http://192.168.0.4:9000/${data.avatar}`;
+
+    return (
+        <View style={style.containerTransaction}>
+            <View style={style.profileContainer}>
+                {data.category === 'Top Up' ? null : (
+                    <Image source={data.avatar === '' ? imgPlaceHolder : ({ uri: profilImg })} style={style.profileImg} />
+                )}
+                <View style={style.textHelloContainer}>
+                    {data.category === 'Top Up' ? (
+                        <Text style={style.textNameTransaction}>Top Up Zwallet</Text>
+                    ) : (
+                            <Text style={style.textNameTransaction}>{data.username}</Text>
+                        )}
+                    <Text style={style.textTransaction}>{data.category}</Text>
+                </View>
+            </View>
+            {data.type === 'in' ? (
+                <Text style={style.textTransactionNumberIncome}>{`+Rp${(data.amount).toLocaleString('id-ID')}`}</Text>
+            ) : (
+                    <Text style={style.textTransactionNumberOutcome}>{`-Rp${(data.amount).toLocaleString('id-ID')}`}</Text>
+                )}
+        </View>
+    );
+};
 
 const Home = ({ navigation }) => {
     const auth = useSelector((state) => state.auth);
     const currentUser = useSelector(state => state.auth.data);
     const balanceCurrentUser = useSelector(state => state.auth.balance)
-    // const stateHistory = useSelector(state => state.transaction.history);
+    const stateHistory = useSelector(state => state.transaction.history);
 
+    const dataHistory = stateHistory.slice(0, 3)
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -79,18 +106,12 @@ const Home = ({ navigation }) => {
                     <Text style={{ fontSize: 15, color: 'blue' }}>See all</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{ ...style.transactionContainer, }}>
-                <View>
-                    <Image source={profileImg} style={{ ...style.userImg, }} />
-                </View>
-                <View style={{ ...style.unameTransHistory, }}>
-                    <Text style={{ fontSize: 16 }}>kimung</Text>
-                    <Text style={{ fontSize: 16 }}>transfer</Text>
-                </View>
-                <View style={{ ...style.transactionPrice, }}>
-                    <Text style={{ alignSelf: 'flex-end' }}>kimung</Text>
-                </View>
-            </View>
+            <FlatList
+                style={{ height: 250 }}
+                data={dataHistory}
+                renderItem={({ item }) => <Item data={item} />}
+                keyExtractor={item => item.id}
+            />
         </View>
     )
 }

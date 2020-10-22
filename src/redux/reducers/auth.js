@@ -107,21 +107,28 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         pin: '',
       }
-    case actions.AUTH_GET_EMAIL + actions.FULFILLED:
-      // console.log('babi', payload.data.data)
+    case actions.AUTH_UPDATE_PASSWORD + actions.PENDING:
       return {
         ...state,
-        email: payload.data.data
+        isPending: true,
+        isFulfilled: false,
+        isRejected: false,
       }
-    case actions.AUTH_RESET_PASSWORD + actions.FULFILLED:
+    case actions.AUTH_UPDATE_PASSWORD + actions.REJECTED:
       return {
         ...state,
-        reset: payload.data.data
+        update: payload.data,
+        isPending: false,
+        isFulfilled: false,
+        isRejected: true,
       }
     case actions.AUTH_UPDATE_PASSWORD + actions.FULFILLED:
       return {
         ...state,
-        update: payload.data.data
+        update: payload.data.data,
+        isPending: false,
+        isFulfilled: true,
+        isRejected: false,
       }
     case actions.AUTH_UPDATE_PIN + actions.PENDING:
       return {
@@ -153,6 +160,35 @@ const authReducer = (state = initialState, { type, payload }) => {
         email: {},
         update: {}
       }
+    case actions.AUTH_SEND_EMAIL + actions.PENDING:
+      return {
+        ...state,
+        isPending: true,
+        isFulfilled: false,
+        isRejected: false,
+      }
+    case actions.AUTH_SEND_EMAIL + actions.REJECTED:
+      return {
+        ...state,
+        email: payload.data,
+        isPending: false,
+        isFulfilled: false,
+        isRejected: true,
+      }
+    case actions.AUTH_SEND_EMAIL + actions.FULFILLED:
+      return {
+        ...state,
+        email: payload.data.data,
+        isPending: false,
+        isFulfilled: true,
+        isRejected: false,
+      }
+    case actions.AUTH_RESET_PASSWORD + actions.FULFILLED:
+      return {
+        ...state,
+        reset: payload.data.data
+      }
+
     default:
       return state;
   }

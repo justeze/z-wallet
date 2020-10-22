@@ -141,17 +141,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: color.backgroud,
         flex: 1,
-        // justifyContent: 'space-evenly'
-        // marginTop: 10,
-    },
-    // header
-    containerHeader: {
-        marginTop: '8%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: '4%',
-        backgroundColor: color.primary,
     },
     profileContainer: {
         flexDirection: 'row',

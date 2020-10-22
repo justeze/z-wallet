@@ -7,25 +7,29 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import * as color from '../styles/colorStyles';
 import style from '../styles/resetPassword'
-import { getEmailCreator } from '../redux/actions/auth';
+import { clearState, sendEmailCreator } from '../redux/actions/auth';
 
 const ResetPassword = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const dispatch = useDispatch();
     const mail = useSelector((state) => state.auth.email)
-    // console.log(mail)
+    // console.log('kambingg', mail)
 
     useEffect(() => {
-        if (mail.msg === 'kambing') {
-            navigation.navigate('ResetPasswordFilled')
+        if (mail.status === 200) {
+            navigation.navigate('OtpConf')
+            // dispatch(clearState())
         }
-    }, [mail.msg, navigation])
+    }, [mail.status, navigation, dispatch])
 
     const onSubmitEmail = () => {
         const data = {
             email: email
         }
-        dispatch(getEmailCreator(data))
+        // console.log('kuda', data)
+        dispatch(sendEmailCreator(data))
+        // dispatch(clearState())
+
     }
 
 
