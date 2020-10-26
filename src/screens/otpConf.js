@@ -57,7 +57,7 @@ const OtpConf = ({ navigation }) => {
                     handleSubmit()
                 }}>
                 <Text style={{ color: 'white', fontSize: 20 }}>
-                    Change PIN
+                    Reset Password
                 </Text>
             </TouchableOpacity>
             {/* <View style={{ alignItems: 'center', backgroundColor: 'white' }}>

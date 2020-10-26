@@ -50,12 +50,12 @@ const ChangePassword = ({ navigation }) => {
         }
     };
 
-    const validatePassword = value => {
-        if (value === /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/) {
-            return true
-        }
-        return false
-    }
+    // const validatePassword = value => {
+    //     if (value === /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/) {
+    //         return true
+    //     }
+    //     return false
+    // }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -99,10 +99,17 @@ const ChangePassword = ({ navigation }) => {
                         />
                     )}
                     name="password"
-                    rules={{ required: true, validate: validatePassword }}
+                    rules={{
+                        required: true, pattern: {
+                            value: /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/,
+                            message: "Password must contain at least 1 number, and be longer than 8 charaters"
+                        }
+                    }}
                     defaultValue=""
                 />
-                {errors.password && <Text style={styles.textFormError}>Password is required.</Text>}
+                {errors.password && errors.password.type === 'required' && <Text style={{ color: 'red', marginTop: -25, marginLeft: 25 }}>Required.</Text>}
+                {errors.password && errors.password.type === 'pattern' && <Text style={{ color: 'red', marginTop: -20, marginLeft: 25 }}>{errors.password.message}</Text>}
+
                 <Controller
                     control={control}
                     render={({ onChange, onBlur, value }) => (
@@ -133,10 +140,17 @@ const ChangePassword = ({ navigation }) => {
                         />
                     )}
                     name="newPassword"
-                    rules={{ required: true, validate: validatePassword  }}
+                    rules={{
+                        required: true, pattern: {
+                            value: /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/,
+                            message: "Password must contain at least 1 number, and be longer than 8 charaters"
+                        }
+                    }}
                     defaultValue=""
                 />
-                {errors.newPassword && <Text style={styles.textFormError}>New password is required.</Text>}
+                {errors.newPassword && errors.newPassword.type === 'required' && <Text style={{ color: 'red', marginTop: -25, marginLeft: 25 }}>Required.</Text>}
+                {errors.newPassword && errors.newPassword.type === 'pattern' && <Text style={{ color: 'red', marginTop: -20, marginLeft: 25 }}>{errors.newPassword.message}</Text>}
+
                 <Controller
                     control={control}
                     render={({ onChange, onBlur, value }) => (
@@ -167,9 +181,17 @@ const ChangePassword = ({ navigation }) => {
                         />
                     )}
                     name="newPasswordRepeat"
-                    rules={{ required: true, validate: validatePassword  }}
+                    rules={{
+                        required: true, pattern: {
+                            value: /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{8,}$/,
+                            message: "Password must contain at least 1 number, and be longer than 8 charaters"
+                        }
+                    }}
                     defaultValue=""
                 />
+                {errors.newPasswordRepeat && errors.newPasswordRepeat.type === 'required' && <Text style={{ color: 'red', marginTop: -25, marginLeft: 25 }}>Required.</Text>}
+                {errors.newPasswordRepeat && errors.newPasswordRepeat.type === 'pattern' && <Text style={{ color: 'red', marginTop: -20, marginLeft: 25 }}>{errors.newPasswordRepeat.message}</Text>}
+
                 {getValues('newPassword') !== getValues('newPasswordRepeat') && <Text style={styles.textFormError}>Password didn't match.</Text>}
             </View>
             <Button

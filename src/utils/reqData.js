@@ -1,19 +1,19 @@
 import Axios from 'axios';
 
 export const getUsers = () => {
-  return Axios.get('http://192.168.0.5:9000/user/');
+  return Axios.get('http://192.168.51.32:9000/user/');
 };
 
 export const getUserSearch = (username) => {
-  return Axios.get(`http://192.168.0.5:9000/user/?username=${username}&page=1&limit=6`);
+  return Axios.get(`http://192.168.51.32:9000/user/?username=${username}&page=1&limit=6`);
 };
 
 export const authLogin = (data) => {
-  return Axios.post(`http://192.168.0.5:9000/auth/login`, data);
+  return Axios.post(`http://192.168.51.32:9000/auth/login`, data);
 }
 
 export const authRegister = (data) => {
-  return Axios.post(`http://192.168.0.5:9000/auth/register`, data);
+  return Axios.post(`http://192.168.51.32:9000/auth/register`, data);
 }
 // export const authPinConf = (data) => {
 //   return Axios.post(`http://192.168.0.5:9000/auth/getpin`, data);
@@ -46,38 +46,38 @@ export const updateUser = (username, password, pin, image, email) => {
     },
 
   };
-  return Axios.patch('http://192.168.0.5:9000/auth/update', data, config);
+  return Axios.patch('http://192.168.51.32:9000/auth/update', data, config);
 };
 
 export const transactionTransfer = (data) => {
-  return Axios.post(`http://192.168.0.5:9000/transaction/send`, data);
+  return Axios.post(`http://192.168.51.32:9000/transaction/send`, data);
 }
 
 export const getBalance = (id) => {
-  return Axios.get(`http://192.168.0.5:9000/auth/getBalance/${id}`)
+  return Axios.get(`http://192.168.51.32:9000/auth/getBalance/${id}`)
 }
 
 export const getQuickAccess = (id) => {
-  return Axios.get(`http://192.168.0.5:9000/user/quickAccess/?id=${id}`)
+  return Axios.get(`http://192.168.51.32:9000/user/quickAccess/?id=${id}`)
 }
 
 export const changePassword = (id, data) => {
-  return Axios.patch(`http://192.168.0.5:9000/auth/changepwd/?id=${id}`, data)
+  return Axios.patch(`http://192.168.51.32:9000/auth/changepwd/?id=${id}`, data)
 }
 
 export const changePin = (id, data) => {
-  return Axios.patch(`http://192.168.0.5:9000/auth/changepin/?id=${id}`, data)
+  return Axios.patch(`http://192.168.51.32:9000/auth/changepin/?id=${id}`, data)
 }
 
 export const sendEmail = (data) => {
-  return Axios.post('http://192.168.0.5:9000/auth/sendEmail', data)
+  return Axios.post('http://192.168.51.32:9000/auth/sendEmail', data)
 }
 
 export const resetPassword = (data) => {
-  return Axios.patch('http://192.168.0.5:9000/auth/resetPassword', data)
+  return Axios.patch('http://192.168.51.32:9000/auth/resetPassword', data)
 }
 
 export const history = (id) => {
-  return Axios.get(`http://192.168.0.5:9000/transaction/history/${id}`)
+  return Axios.get(`http://192.168.51.32:9000/transaction/history/${id}`)
 }
 

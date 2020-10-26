@@ -8,7 +8,7 @@ import { authLoginCreator } from '../redux/actions/auth';
 
 import styles from '../styles/login';
 import * as color from '../styles/colorStyles';
-import { ScrollView } from 'react-native-gesture-handler';
+// import { ScrollView } from 'react-native-gesture-handler';
 
 const Login = ({ navigation }) => {
     const [showPassword, setShowPassword] = useState(true);

@@ -2,23 +2,41 @@ import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Input } from 'react-native-elements';
 import { useDispatch, useSelector } from 'react-redux';
+import { showLocalNotification } from '../assets/notif/handleNotification'
+import pushNotif from 'react-native-push-notification'
 
 import Icon from 'react-native-vector-icons/Feather';
 
 import * as color from '../styles/colorStyles';
 import style from '../styles/resetPassword'
-import { clearState, sendEmailCreator } from '../redux/actions/auth';
+import { sendEmailCreator } from '../redux/actions/auth';
 
 const ResetPassword = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const dispatch = useDispatch();
     const mail = useSelector((state) => state.auth.email)
     // console.log('kambingg', mail)
+    const channelId = 'otp'
+
+    useEffect(() => {
+        pushNotif.createChannel({
+            channelId,
+            channelName: 'emailConf',
+            channelDescription: 'kambing',
+            soundName: 'default',
+            importance: 4
+            // vibrate: 
+        })
+    }, [])
 
     useEffect(() => {
         if (mail.status === 200) {
             navigation.navigate('OtpConf')
-            // dispatch(clearState())
+            showLocalNotification(
+                'Zwallet',
+                `We've sent you an email!`,
+                channelId,
+            );
         }
     }, [mail.status, navigation, dispatch])
 

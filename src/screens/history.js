@@ -13,7 +13,7 @@ import * as color from '../styles/colorStyles';
 import defaultProfile from '../assets/img/imgPlaceholder.jpg';
 
 const Item = ({ data }) => {
-    const profilImg = `http://192.168.0.4:9000/${data.avatar}`;
+    const profilImg = `http://192.168.51.32:9000/${data.avatar}`;
 
     return (
         <View style={styles.containerTransaction}>

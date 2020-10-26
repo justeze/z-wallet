@@ -13,10 +13,10 @@ import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
 // import notifIcon from '../assets/icon/shopping-cart.png'
 
 const Item = ({ data }) => {
-    const profilImg = `http://192.168.0.4:9000/${data.avatar}`;
+    const profilImg = `http://192.168.51.32:9000/${data.avatar}`;
 
     return (
-        <View style={style.containerTransaction}>
+        <View style={style.containerTransaction} >
             <View style={style.profileContainer}>
                 {data.category === 'Top Up' ? null : (
                     <Image source={data.avatar === '' ? imgPlaceHolder : ({ uri: profilImg })} style={style.profileImg} />
@@ -110,7 +110,7 @@ const Home = ({ navigation }) => {
                 style={{ height: 250 }}
                 data={dataHistory}
                 renderItem={({ item }) => <Item data={item} />}
-                keyExtractor={item => item.id}
+                keyExtractor={(item) => item.id}
             />
         </View>
     )

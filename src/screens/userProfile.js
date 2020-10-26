@@ -19,7 +19,7 @@ const UserProfile = ({ navigation }) => {
     const [image, setImage] = useState(null);
 
 
-    // console.log(auth.data.avatar)
+    console.log(auth.data.pin)
     useEffect(() => {
         if (logout) {
             dispatch(LoggedOut());
@@ -96,8 +96,8 @@ const UserProfile = ({ navigation }) => {
                                 : <Image source={imgPlaceHolder} style={style.imgUser} />}
 
                     <View style={style.edit}>
-                        <Icon name="edit-2" color="#7A7886" onPress={() => handleChoose()} />
-                        <Text style={style.editTxt}>Edit</Text>
+                        <Icon name="edit-2" color="#7A7886"  />
+                        <Text style={style.editTxt} onPress={() => handleChoose()}>Edit</Text>
                     </View>
                     <Text style={style.name}>{auth.data.username}</Text>
                     <Text style={style.phone}>{auth.data.phone_number}</Text>

@@ -46,7 +46,7 @@ const SecurityPin = ({ navigation }) => {
             id: userId.data.id,
             pin: pin
         };
-        Axios.post(`http://192.168.0.5:9000/auth/getpin`, data)
+        Axios.post(`http://192.168.51.32:9000/auth/getpin`, data)
             .then((res) => {
                 // console.log(data.pin)
                 if (res.data.data) {
