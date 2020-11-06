@@ -13,7 +13,7 @@ import * as color from '../styles/colorStyles';
 import defaultProfile from '../assets/img/imgPlaceholder.jpg';
 
 const Item = ({ data }) => {
-    const profilImg = `http://192.168.51.32:9000/${data.avatar}`;
+    const profilImg = `http://3.81.51.4:9000/${data.avatar}`;
 
     return (
         <View style={styles.containerTransaction}>
@@ -44,7 +44,7 @@ const History = () => {
 
     const stateHistory = useSelector(state => state.transaction.history);
 
-    console.log('kambing', stateHistory)
+    // console.log('kambing', stateHistory)
 
     const startDateWeek = DateTime.local().startOf('week').toISODate();
     const endDateWeek = DateTime.local().startOf('week').plus({ days: 7 }).toISODate();

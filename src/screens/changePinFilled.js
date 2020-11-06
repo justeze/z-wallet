@@ -34,7 +34,7 @@ const ChangePin = () => {
             pin: currentPin,
             newPin: newPin
         }
-        console.log('kambing', data)
+        // console.log('kambing', data)
         dispatch(updatePinCreator(id, data))
     }
 

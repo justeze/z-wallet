@@ -13,7 +13,7 @@ import imgPlaceHolder from '../assets/img/imgPlaceholder.jpg'
 // import notifIcon from '../assets/icon/shopping-cart.png'
 
 const Item = ({ data }) => {
-    const profilImg = `http://192.168.51.32:9000/${data.avatar}`;
+    const profilImg = `http://3.81.51.4:9000/${data.avatar}`;
 
     return (
         <View style={style.containerTransaction} >
