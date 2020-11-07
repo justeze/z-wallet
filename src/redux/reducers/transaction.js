@@ -58,8 +58,7 @@ const transactionReducer = (state = initialState, { type, payload }) => {
     case actions.GET_HISTORY + actions.FULFILLED:
       const data = payload.data.data
       const homeHistory = data.slice(0, 4)
-      console.log('asu', homeHistory)
-
+      // console.log('asu', homeHistory)
       return {
         ...state,
         isFulfilled: true,

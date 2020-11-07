@@ -19,7 +19,7 @@ const Item = ({ data }) => {
         <View style={styles.containerTransaction}>
             <View style={styles.profileContainer}>
                 {data.category === 'Top Up' ? null : (
-                    <Image source={data.avatar === '' ? defaultProfile : ({ uri: profilImg })} style={styles.profileImg} />
+                    <Image source={data.avatar === '' ? defaultProfile : ({ uri: data.avatar })} style={styles.profileImg} />
                 )}
                 <View style={styles.textHelloContainer}>
                     {data.category === 'Top Up' ? (
@@ -44,8 +44,6 @@ const History = () => {
 
     const stateHistory = useSelector(state => state.transaction.history);
 
-    // console.log('kambing', stateHistory)
-
     const startDateWeek = DateTime.local().startOf('week').toISODate();
     const endDateWeek = DateTime.local().startOf('week').plus({ days: 7 }).toISODate();
     const getThisMonth = DateTime.local().month;
@@ -64,13 +62,6 @@ const History = () => {
         );
     });
 
-    // const beforeAgain = stateHistory.filter((item) => {
-    //     return (
-    //         !thisWeek.includes(item) &&
-    //         !thisMonth.includes(item)
-    //     );
-    // });
-
     const historyData = [
         {
             date: 'This Week',
@@ -80,10 +71,6 @@ const History = () => {
             date: 'This Month',
             data: thisMonth,
         },
-        // {
-        //     date: 'Before Again',
-        //     data: beforeAgain,
-        // },
     ];
 
     return (

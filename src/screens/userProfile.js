@@ -18,13 +18,12 @@ const UserProfile = ({ navigation }) => {
     const auth = useSelector((state) => state.auth);
     const [image, setImage] = useState(null);
 
+    console.log(auth.data.avatar)
 
-    console.log(auth.data.pin)
     useEffect(() => {
         if (logout) {
             dispatch(LoggedOut());
             setLogout(false);
-            // console.log(logOut)
             navigation.navigate('Login');
         }
     }, [dispatch, logout, navigation]);

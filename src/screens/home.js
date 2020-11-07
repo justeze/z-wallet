@@ -19,7 +19,7 @@ const Item = ({ data }) => {
         <View style={style.containerTransaction} >
             <View style={style.profileContainer}>
                 {data.category === 'Top Up' ? null : (
-                    <Image source={data.avatar === '' ? imgPlaceHolder : ({ uri: profilImg })} style={style.profileImg} />
+                    <Image source={data.avatar === '' ? imgPlaceHolder : ({ uri: data.avatar })} style={style.profileImg} />
                 )}
                 <View style={style.textHelloContainer}>
                     {data.category === 'Top Up' ? (
